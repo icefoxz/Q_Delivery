@@ -1,0 +1,19 @@
+﻿global using Microsoft.AspNetCore.Authentication; 
+global using Delivery.IServices;
+global using Delivery.Services;
+global using Delivery.CommonInitializers.CommonInitializer;
+global using Delivery.Domains.Dto.UserServicesDto.MenuDto;
+global using Delivery.CommonInitializers.CommonMiddleware;
+global using Delivery.Domains.Dto.UserServicesDto.DeptDto;
+global using Delivery.Domains.UserEntitys;
+global using Delivery.WebApi.Controllers.Controllers;
+global using Microsoft.AspNetCore.Mvc;
+
+global using Delivery.Commons.Result;
+global using Delivery.Domains.Dto.UserServicesDto.JobDto;
+global using Delivery.Domains.Dto.UserServicesDto.PersonDto;
+global using Delivery.IServices.IUserServices;
+global using Delivery.Domains.Dto.UserServicesDto.LimitDto;
+global using Delivery.Domains.Dto.OrderServicesDto.Lingau_OptLogDto;
+global using Delivery.Domains.Dto.OrderServicesDto.LingauDto;
+global using Delivery.Services.OrderServices;

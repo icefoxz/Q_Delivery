@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Delivery.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Delivery.WebApi.Controllers.AuthController.LoginOn(Delivery.Domains.Dto.UserServicesDto.LoginDto.LoginRequest)">
+            <summary>
+            登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.AuthController.GetUserLimitAndMenuInfo">
+            <summary>
+            获取菜单用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.DeptController.DeptParentListAsync(Delivery.Domains.Dto.UserServicesDto.DeptDto.DeptRequest)">
+            <summary>
+            获取单位信息
+            </summary>
+            <param name="deptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.DeptController.DeptListAsync(Delivery.Domains.Dto.UserServicesDto.DeptDto.DeptRequest)">
+            <summary>
+            获取单位信息
+            </summary>
+            <param name="deptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.DeptController.SaveDeptAsync(Delivery.Domains.Dto.UserServicesDto.DeptDto.DeptRequest)">
+            <summary>
+            保存单位
+            </summary>
+            <param name="deptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.DeptController.DeleteDeptAsync(Delivery.Domains.Dto.UserServicesDto.DeptDto.DeptRequest)">
+            <summary>
+            删除单位
+            </summary>
+            <param name="deptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.JobController.GetJobListAsync(Delivery.Domains.Dto.UserServicesDto.JobDto.JobRequest)">
+            <summary>
+            获取职位信息
+            </summary>
+            <param name="jobRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.JobController.SaveJobAsync(Delivery.Domains.Dto.UserServicesDto.JobDto.JobRequest)">
+            <summary>
+            保存职位
+            </summary>
+            <param name="deptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.JobController.DeleteJobAsync(Delivery.Domains.Dto.UserServicesDto.JobDto.JobRequest)">
+            <summary>
+            删除职位
+            </summary>
+            <param name="deptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.LingauController.GetLingauListAsync(Delivery.Domains.Dto.OrderServicesDto.LingauDto.LingauRequest)">
+            <summary>
+            获取Lingau列表
+            </summary>
+            <param name="lingauRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.LingauController.SaveLingauAsync(Delivery.Domains.Dto.OrderServicesDto.LingauDto.LingauRequest)">
+            <summary>
+            保存Lingau
+            </summary>
+            <param name="lingauRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.LingauController.DeleteLingauAsync(Delivery.Domains.Dto.OrderServicesDto.LingauDto.LingauRequest)">
+            <summary>
+            删除Lingau
+            </summary>
+            <param name="lingauRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.LingauController.GetLingauOptLogListAsync(Delivery.Domains.Dto.OrderServicesDto.Lingau_OptLogDto.LingauOptLogRequest)">
+            <summary>
+            获取LingauOptLog列表
+            </summary>
+            <param name="lingauOptLogRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.GetLimitListAsync(Delivery.Domains.Dto.UserServicesDto.LimitDto.LimitRequest)">
+            <summary>
+            获取权限组信息
+            </summary>
+            <param name="limitRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.SaveLimitAsync(Delivery.Domains.Dto.UserServicesDto.LimitDto.LimitRequest)">
+            <summary>
+            保存权限组
+            </summary>
+            <param name="limitRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.DeleteLimitAsync(Delivery.Domains.Dto.UserServicesDto.LimitDto.LimitRequest)">
+            <summary>
+            删除权限组
+            </summary>
+            <param name="limitRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.GetMenuListAsync(Delivery.Domains.Dto.UserServicesDto.MenuDto.MenuRequest)">
+            <summary>
+            获取菜单信息
+            </summary>
+            <param name="menuRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.SaveMenuAsync(Delivery.Domains.Dto.UserServicesDto.MenuDto.MenuRequest)">
+            <summary>
+            保存菜单
+            </summary>
+            <param name="menuRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.DeleteMenuAsync(Delivery.Domains.Dto.UserServicesDto.MenuDto.MenuRequest)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="menuRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.SaveLimitRelevancyMenuAsync(Delivery.Domains.Dto.UserServicesDto.LimitDto.LimitRequest)">
+            <summary>
+            权限组分配菜单
+            </summary>
+            <param name="limitRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.MenuLimitController.GetSelectMenuList(Delivery.Domains.Dto.UserServicesDto.LimitDto.LimitRequest)">
+            <summary>
+            获取指定权限组已选中的菜单
+            </summary>
+            <param name="limitRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.GetOrderListAsync(Delivery.Domains.Dto.OrderServicesDto.OrderDto.OrderRequest)">
+            <summary>
+            获取订单信息
+            </summary>
+            <param name="orderRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.GetOrderPageListAsync(Delivery.Domains.Dto.OrderServicesDto.OrderDto.OrderRequest)">
+            <summary>
+            获取订单信息
+            </summary>
+            <param name="orderRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.SaveOrderAsync(Delivery.Domains.Dto.OrderServicesDto.OrderDto.OrderRequest)">
+            <summary>
+            保存订单
+            </summary>
+            <param name="orderRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.DeleteTagAsync(Delivery.Domains.Dto.OrderServicesDto.OrderDto.OrderRequest)">
+            <summary>
+            删除订单
+            </summary>
+            <param name="orderRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.GetOrderTagOrReportListAsync(Delivery.Domains.Dto.OrderServicesDto.OrderTagOrReportDto.OrderTagOrReportRequest)">
+            <summary>
+            获取标签信息-根据订单Id
+            </summary>
+            <param name="orderTagOrReportRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.GetOrderTagOrReportPageListAsync(Delivery.Domains.Dto.OrderServicesDto.OrderTagOrReportDto.OrderTagOrReportRequest)">
+            <summary>
+            获取标签信息分页-根据订单Id
+            </summary>
+            <param name="orderTagOrReportRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.SaveOrderTagOrReportAsync(Delivery.Domains.Dto.OrderServicesDto.OrderTagOrReportDto.OrderTagOrReportRequest)">
+            <summary>
+            保存标签或报告
+            </summary>
+            <param name="orderTagOrReportRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.OrderController.DisableOrderTagOrReportAsync(Delivery.Domains.Dto.OrderServicesDto.OrderTagOrReportDto.OrderTagOrReportRequest)">
+            <summary>
+            作废报告
+            </summary>
+            <param name="orderTagOrReportRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.SystemController.GetLogList(Delivery.Domains.Dto.SystemServicesDto.SystemLog.SystemLogRequest)">
+            <summary>
+            获取日志信息
+            </summary>
+            <param name="systemLogRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.SystemController.GetLogPageList(Delivery.Domains.Dto.SystemServicesDto.SystemLog.SystemLogRequest)">
+            <summary>
+            获取日志信息
+            </summary>
+            <param name="systemLogRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.SystemController.getSystemDictList(Delivery.Domains.Dto.SystemServicesDto.SystemDict.SystemDictRequest)">
+            <summary>
+            获取systemDict列表
+            </summary>
+            <param name="systemDictRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.SystemController.SaveSystemDicAsync(Delivery.Domains.Dto.SystemServicesDto.SystemDict.SystemDictRequest)">
+            <summary>
+            保存systemDict
+            </summary>
+            <param name="systemDictRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.SystemController.DeleteSystemDicAsync(Delivery.Domains.Dto.SystemServicesDto.SystemDict.SystemDictRequest)">
+            <summary>
+            删除systemDict
+            </summary>
+            <param name="systemDictRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.SystemController.SaveFile(Delivery.Domains.Dto.SystemServicesDto.SystemFile.SystemFileRequest)">
+            <summary>
+            保存文件
+            </summary>
+            <param name="systemFileRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.GetTagListAsync(Delivery.Domains.Dto.OrderServicesDto.TagDto.TagRequest)">
+            <summary>
+            获取标签信息
+            </summary>
+            <param name="tagRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.SaveTagAsync(Delivery.Domains.Dto.OrderServicesDto.TagDto.TagRequest)">
+            <summary>
+            保存标签
+            </summary>
+            <param name="tagRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.DeleteTagAsync(Delivery.Domains.Dto.OrderServicesDto.TagDto.TagRequest)">
+            <summary>
+            删除标签
+            </summary>
+            <param name="tagRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.DisableTagAsync(Delivery.Domains.Dto.OrderServicesDto.TagDto.TagRequest)">
+            <summary>
+            禁用启用标签
+            </summary>
+            <param name="tagRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.GetTagManagerListAsync(Delivery.Domains.Dto.OrderServicesDto.TagManagerDto.TagManagerRequest)">
+            <summary>
+            获取标签所属类型信息
+            </summary>
+            <param name="tagManagerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.SaveTagManagerAsync(Delivery.Domains.Dto.OrderServicesDto.TagManagerDto.TagManagerRequest)">
+            <summary>
+            保存标签所属类型
+            </summary>
+            <param name="tagManagerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.TagManagerController.DeleteTagManagerAsync(Delivery.Domains.Dto.OrderServicesDto.TagManagerDto.TagManagerRequest)">
+            <summary>
+            删除标签所属类型
+            </summary>
+            <param name="tagManagerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.getPersonListAsync(Delivery.Domains.Dto.UserServicesDto.PersonDto.PersonRequest)">
+            <summary>
+            获取人员信息
+            </summary>
+            <param name="personRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.getPersonListByPersonAsync(Delivery.Domains.Dto.UserServicesDto.PersonDto.PersonRequest)">
+            <summary>
+            获取指定类型的人员信息
+            </summary>
+            <param name="personRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.SavePersonAsync(Delivery.Domains.Dto.UserServicesDto.PersonDto.PersonRequest)">
+            <summary>
+            保存人员
+            </summary>
+            <param name="personRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.DeletePersonAsync(Delivery.Domains.Dto.UserServicesDto.PersonDto.PersonRequest)">
+            <summary>
+            删除人员
+            </summary>
+            <param name="personRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.GetUserListAsync(Delivery.Domains.Dto.UserServicesDto.UserDto.UserRequest)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="userRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.SaveUserAsync(Delivery.Domains.Dto.UserServicesDto.UserDto.UserRequest)">
+            <summary>
+            保存用户
+            </summary>
+            <param name="userRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.DeleteUserAsync(Delivery.Domains.Dto.UserServicesDto.UserDto.UserRequest)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="userRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Controllers.UserController.DisableUserAsync(Delivery.Domains.Dto.UserServicesDto.UserDto.UserRequest)">
+            <summary>
+            启用/禁用用户
+            </summary>
+            <param name="userRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Delivery.WebApi.Filter.ApiAuthorizeFilter.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            判断该请求是否是ajax请求
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Delivery.WebApi.Logs.ILogHandler">
+            <summary>
+            操作日志处理接口
+            </summary>
+        </member>
+        <member name="M:Delivery.WebApi.Logs.ILogHandler.LogAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            写操作日志
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

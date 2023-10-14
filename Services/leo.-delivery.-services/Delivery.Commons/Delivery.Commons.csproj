@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NLog" Version="5.2.4" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.3.2" />
+		<PackageReference Include="PinYinConverterCore" Version="1.0.2" />
+		<PackageReference Include="UAParser" Version="3.1.46" />
+		<PackageReference Include="JWT" Version="8.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Config\systemConfig.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties config_4systemconfig_1json__JsonSchema="https://api.airplane.dev/v0/schemas/task.json" />
+		</VisualStudio>
+	</ProjectExtensions>
+
+</Project>

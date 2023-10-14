@@ -1,0 +1,17 @@
+﻿global using Delivery.Domains.BaseEntitys;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using Delivery.Domains.UserEntitys;
+global using Delivery.Domains.OrderEntitys;
+global using Delivery.Domains.Dto.UserServicesDto.MenuDto;
+global using Delivery.Domains.Dto.UserServicesDto.DeptDto;
+global using Delivery.Domains.Dto.UserServicesDto.JobDto;
+global using Delivery.Commons.Enum;
+global using Delivery.Commons.XHelper;
+global using Delivery.Domains.Dto.UserServicesDto.LimitDto;
+global using Delivery.Domains.Dto.UserServicesDto.MenuLimitDto;
+global using Delivery.Domains.Dto.UserServicesDto.PersonDto;
+global using Delivery.Domains.Dto.UserServicesDto.UserDto;

@@ -1,0 +1,13 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using Delivery.Domains.OrderEntitys;
+global using Delivery.Domains.UserEntitys;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using Delivery.Commons.Attributes;
+global using Delivery.Domains.OrderEntitys;
+global using Delivery.Domains.UserEntitys;
+global using Delivery.EntityFramework.Core.DbContexts.BaseDbContexts;

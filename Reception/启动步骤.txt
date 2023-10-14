@@ -1,0 +1,4 @@
+1.初始化包：yarn/npm install 
+2.启动 yarn/npm run serve
+
+构建包：npm run  build:dev

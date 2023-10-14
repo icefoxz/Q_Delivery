@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>D:\User\Desktop\Leo\Leo-旧机\Services\leo.-delivery.-services\Delivery.WebApi\Swagger.Core.xml</DocumentationFile>
+		<UserSecretsId>9f7d7931-7bea-47e0-bc2b-a27cc047a021</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
+	</ItemGroup> 
+
+	<ItemGroup>
+		<ProjectReference Include="..\Delivery.CommonInitializers\Delivery.CommonInitializers.csproj" />
+	</ItemGroup>
+
+</Project>

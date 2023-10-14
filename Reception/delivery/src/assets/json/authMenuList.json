@@ -1,0 +1,282 @@
+{
+  "code": 200,
+  "data":[
+    {
+      "path": "/home/index",
+      "name": "home",
+      "component": "/home/index",
+      "meta": {
+        "icon": "HomeFilled",
+        "title": "首页",
+        "isAffix": true,
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isKeepAlive": false
+      }
+    },
+    {
+      "name": "userCenter",
+      "path": "/userCenter",
+      "redirect": "/userCenter/menuManage",
+      "meta": {
+        "icon": "Tickets",
+        "title": "用户中心",
+        "isAffix": false,
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isKeepAlive": true
+      },
+      "children": [
+        {
+          "name": "menuManage",
+          "path": "/userCenter/menuManage",
+          "component": "/userCenter/menuManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "菜单管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "deptManage",
+          "path": "/userCenter/deptManage",
+          "component": "/userCenter/deptManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "单位管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "jobManage",
+          "path": "/userCenter/jobManage",
+          "component": "/userCenter/jobManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "职位管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "authManage",
+          "path": "/userCenter/authManage",
+          "component": "/userCenter/authManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "权限管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "personnelManage",
+          "path": "/userCenter/personnelManage",
+          "component": "/userCenter/personnelManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "人员管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "userManage",
+          "path": "/userCenter/userManage",
+          "component": "/userCenter/userManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "用户管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "path": "/orders",
+      "redirect": "/orders/orderManage",
+      "meta": {
+        "icon": "Tickets",
+        "title": "订单管理",
+        "isAffix": false,
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isKeepAlive": true
+      },
+      "children": [
+        {
+          "name": "orderManage",
+          "path": "/orders/orderManage",
+          "component": "/orders/orderManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "订单查询",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+
+        {
+          "name": "tagManage",
+          "path": "/orders/tagManage",
+          "component": "/orders/tagManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "订单标签",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "descFollow",
+          "path": "/orders/descFollow",
+          "component": "/orders/descFollow/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "订单描述跟踪",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "tagFollow",
+          "path": "/orders/tagFollow",
+          "component": "/orders/tagFollow/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "订单标签跟踪",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "virtualCoin",
+      "path": "/virtualCoin",
+      "redirect": "/virtualCoin/coinManage",
+      "meta": {
+        "icon": "Tickets",
+        "title": "虚拟币管理",
+        "isAffix": false,
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isKeepAlive": true
+      },
+      "children": [
+        {
+          "name": "coinManage",
+          "path": "/virtualCoin/coinManage",
+          "component": "/virtualCoin/coinManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "虚拟币",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "name": "operateManage",
+          "path": "/virtualCoin/operateManage",
+          "component": "/virtualCoin/operateManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "虚拟币操作",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "system",
+      "path": "/system",
+      "redirect": "/system/logManage",
+      "meta": {
+        "icon": "Tickets",
+        "title": "系统配置",
+        "isAffix": false,
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isKeepAlive": true
+      },
+      "children": [
+        {
+          "name": "logManage",
+          "path": "/system/logManage",
+          "component": "/system/logManage/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "日志管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        },
+
+        {
+          "name": "dictionaries",
+          "path": "/system/dictionaries",
+          "component": "/system/dictionaries/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "字典管理",
+            "isAffix": false,
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isKeepAlive": true
+          }
+        }
+      ]
+    }
+  ],
+  "msg": "成功"
+}
