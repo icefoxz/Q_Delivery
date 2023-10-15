@@ -23,9 +23,9 @@ namespace Delivery.Commons.Result
         {
             this.Success = success;
             if (success)
-                this.Message = "操作成功";
+                this.Message = "Success";
             else
-                this.ErrorMsg = "操作失败";
+                this.ErrorMsg = "Failed";
         }
 
         /// <summary>

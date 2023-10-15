@@ -62,7 +62,7 @@ namespace Delivery.Services.UserServices
                     return new ResultMessage(false, "骑手禁止访问平台");
 
                 // 3:生成Token
-                var token = TokenHelp.GetToken(userRequest.user_LoginName ?? "", userRequest.user_LoginPwd);
+                var token = TokenHelp.GetToken(userRequest.user_LoginName ?? "");
 
                 // 4:Token存缓存
                 _memoryCache.Set(token, JsonConvert.SerializeObject(new BaseQuery()

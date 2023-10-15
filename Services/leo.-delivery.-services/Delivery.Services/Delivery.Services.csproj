@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Delivery.IServices\Delivery.IServices.csproj" />
+    <Compile Remove="WebAppServices\**" />
+    <EmbeddedResource Remove="WebAppServices\**" />
+    <None Remove="WebAppServices\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="WebAppServices\" />
+    <ProjectReference Include="..\Delivery.IServices\Delivery.IServices.csproj" />
   </ItemGroup>
 
 </Project>

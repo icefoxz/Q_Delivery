@@ -347,3 +347,7 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+
+Services/leo.-delivery.-services/Delivery.WebApi/Properties/ServiceDependencies/
+
+Services/leo.-delivery.-services/Delivery.WebApi/Properties/

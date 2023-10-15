@@ -23,7 +23,7 @@ namespace Delivery.WebApi
             builder.Services.AddNLogServices();
 
             // Add ContextServices to the container
-            builder.Services.AddContextServices();
+            builder.Services.AddContextServices(builder.Configuration);
 
             // Add AutoDIServices to the container
             builder.Services.AddAutoDIServices();
@@ -34,15 +34,23 @@ namespace Delivery.WebApi
             // Add AutoMapperServices to the container
             builder.Services.AddSwaggerServices();
 
+#if DEBUG
             // ConfigureCors
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:8848")
-                                     .AllowAnyMethod()
-                                     .AllowAnyHeader()
-                                     .AllowCredentials());
+                options.AddPolicy("AllowSpecificOrigins",
+                    b =>
+                    {
+                        var allowedOrigins = builder.Configuration
+                            .GetSection("CORS:AllowedOrigins").Get<string[]>();
+
+                        b.WithOrigins(allowedOrigins)
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
             });
+#endif
 
             //内存缓存
             builder.Services.AddMemoryCache();

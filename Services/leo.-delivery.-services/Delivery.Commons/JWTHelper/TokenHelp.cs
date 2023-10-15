@@ -10,7 +10,7 @@ namespace Delivery.Commons.JWTHelper
 {
     public class TokenHelp
     {
-        public static string GetToken(string userAccount, string userPwd)
+        public static string GetToken(string userAccount)
         {
             string AccessTokenKey = ConfigHelp.GetString("AccessTokenKey");
             
