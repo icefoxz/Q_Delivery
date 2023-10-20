@@ -4,6 +4,7 @@ using Delivery.CommonInitializers.CommonMiddleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Delivery.Commons.Cookie;
+using Delivery.Commons.JWTHelper;
 using Delivery.WebApi.Filter;
 using Delivery.WebApi.Logs;
 
@@ -11,11 +12,13 @@ namespace Delivery.WebApi
 {
     public class Program
     {
+        private const string CorsPolicyName = "AllowSpecificOrigin";
 
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            var config = builder.Configuration;
+            TokenHelp.SetTokenSecret(config["AccessTokenKey"]);
             // Add services to the container.
             builder.Services.AddControllers();
 
@@ -23,7 +26,7 @@ namespace Delivery.WebApi
             builder.Services.AddNLogServices();
 
             // Add ContextServices to the container
-            builder.Services.AddContextServices(builder.Configuration);
+            builder.Services.AddContextServices(config);
 
             // Add AutoDIServices to the container
             builder.Services.AddAutoDIServices();
@@ -35,15 +38,16 @@ namespace Delivery.WebApi
             builder.Services.AddSwaggerServices();
 
 #if DEBUG
+            // azure 支持外设cors, 所以不需要配置
             // ConfigureCors
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigins",
+                options.AddPolicy(CorsPolicyName,
                     b =>
                     {
                         var allowedOrigins = builder.Configuration
                             .GetSection("CORS:AllowedOrigins").Get<string[]>();
-
+                        
                         b.WithOrigins(allowedOrigins)
                             .AllowAnyMethod()
                             .AllowAnyHeader()
@@ -83,10 +87,9 @@ namespace Delivery.WebApi
 
             app.UseHttpsRedirection();
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors(CorsPolicyName);
 
             // Use logging Middleware
             app.UseMiddleware<LoggingMiddleware>();

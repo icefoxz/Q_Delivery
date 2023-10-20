@@ -71,7 +71,7 @@ namespace Delivery.WebApi.Filter
                 return;
             }
             //校验auth的正确性
-            var result = JWTHelp.JWTJieM(token, ConfigHelp.GetString("AccessTokenKey"));
+            var result = JWTHelp.JWTJieM(token, ConfigHelp.GetStringFromFile("AccessTokenKey"));
 
             if (result == "expired")
             {

@@ -10,9 +10,12 @@ namespace Delivery.Commons.JWTHelper
 {
     public class TokenHelp
     {
+        public static string TokenSecret { get; private set; }
+        public static void SetTokenSecret(string secret) => TokenSecret = secret;
+
         public static string GetToken(string userAccount)
         {
-            string AccessTokenKey = ConfigHelp.GetString("AccessTokenKey");
+            string AccessTokenKey = TokenSecret; //ConfigHelp.GetStringFromEnv("AccessTokenKey");
             
             string userId = Guid.NewGuid().ToString();
 

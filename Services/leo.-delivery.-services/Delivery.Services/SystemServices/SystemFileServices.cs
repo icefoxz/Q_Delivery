@@ -59,8 +59,8 @@ namespace Delivery.Services.SystemServices
 
             try
             {
-                var imgUrl = ConfigHelp.GetString("imgUrl");
-                var imgUrlFolder = ConfigHelp.GetString("imgUrlFolder");
+                var imgUrl = ConfigHelp.GetStringFromFile("imgUrl");
+                var imgUrlFolder = ConfigHelp.GetStringFromFile("imgUrlFolder");
                 var filePath = await StorageLocal(systemFileRequest.file, imgUrl);
                 var file = new SystemFile()
                 {
@@ -86,7 +86,7 @@ namespace Delivery.Services.SystemServices
 
             //var config = ConfigFileHelper.GetConfig<CommonConfig>(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, CommonConfigConst.systemConfigUrl));
             if (string.IsNullOrEmpty(imgUrl))
-                imgUrl = ConfigHelp.GetString("imgUrl");
+                imgUrl = ConfigHelp.GetStringFromFile("imgUrl");
 
             //获取路径配置
             //var config = await _configService.GetByConfigKey(CateGoryConst.Config_FILE_LOCAL, configKey);

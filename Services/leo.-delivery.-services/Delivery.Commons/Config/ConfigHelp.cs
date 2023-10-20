@@ -15,7 +15,7 @@ namespace Delivery.Commons.Config
         /// <param name="key">键名</param>
         /// <param name="FilePath">文件路径，默认为：appsettings.json</param>
         /// <returns></returns>
-        public static string GetString(string key, string FilePath = "appsettings.json")
+        public static string GetStringFromFile(string key, string FilePath = "appsettings.json")
         {
             var configurationBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile(FilePath, optional: true, reloadOnChange: true);
             var configuration = configurationBuilder.Build();
