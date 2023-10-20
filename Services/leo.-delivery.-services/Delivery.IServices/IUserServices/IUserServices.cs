@@ -16,6 +16,6 @@ namespace Delivery.IServices.IUserServices
         Task<ResultMessage> UserSaveAsync(UserRequest UserRequest = null);
         Task<ResultMessage> UserDeleteAsync(UserRequest UserRequest = null);
         Task<ResultMessage> UserDisableAsync(UserRequest UserRequest = null);
-        Task<UserResponse> UserAccountVerifictionAsync(UserRequest UserRequest = null);
+        Task<UserResponse> UserAccountVerificationAsync(UserRequest UserRequest = null);
     }
 }

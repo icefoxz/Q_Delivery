@@ -62,7 +62,7 @@ namespace Delivery.Domains.OrderEntitys
         /// <summary>
         /// 物品件数
         /// </summary>
-        public int order_GoddsNums { get; set; } 
+        public int order_GoddsNums { get; set; }
 
         /// <summary>
         /// 物品长度
@@ -135,7 +135,7 @@ namespace Delivery.Domains.OrderEntitys
         /// <summary>
         /// 运送费
         /// </summary>
-        public double order_GoodsDelivery { get; set; } //DeliveryFee
+        public double order_GoodsDelivery { get; set; }
 
         /// <summary>
         /// 付款类型-字典配置

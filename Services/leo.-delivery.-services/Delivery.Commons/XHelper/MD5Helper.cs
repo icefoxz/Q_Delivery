@@ -10,11 +10,11 @@ namespace Delivery.Commons.XHelper
     public class MD5Helper
     {
         /// <summary>
-        /// 取得输入字符串的MD5哈希值
+        /// 取得输入字符串的MD5哈希值-X代表取消最开始的0
         /// </summary>
         /// <param name="argInput">输入字符串</param>
         /// <returns>MD5哈希值</returns>
-        public static string MD5String(string ConvertString)
+        public static string MD5XString(string ConvertString)
         {
             if (string.IsNullOrWhiteSpace(ConvertString))
                 return string.Empty;
@@ -33,6 +33,27 @@ namespace Delivery.Commons.XHelper
         }
 
         /// <summary>
+        /// 取得输入字符串的MD5哈希值-X2代表不省略开始的0
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string MD5X2String(string str)
+        {
+            string cl = str;
+            string pwd = "";
+            MD5 md5 = MD5.Create();//实例化一个md5对像
+            // 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　
+            byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(cl));
+            // 通过使用循环，将字节类型的数组转换为字符串，此字符串是常规字符格式化所得
+            for (int i = 0; i < s.Length; i++)
+            {
+                // 将得到的字符串使用十六进制类型格式。格式后的字符是小写的字母，如果使用大写（X）则格式后的字符是大写字符 
+                pwd = pwd + s[i].ToString("X2");
+            }
+            return pwd;
+        }
+
+        /// <summary>
         /// 取得输入字符串的MD5哈希值
         /// （因移动检查手持机格式问题，重写方法，仅限移动检查调用）
         /// </summary>
@@ -46,6 +67,16 @@ namespace Delivery.Commons.XHelper
             byte[] output = md5.ComputeHash(result);
             ConvertString = BitConverter.ToString(output).Replace("-", "");  //tbMd5pass为输出加密文本的文本框
             return ConvertString;
+        }
+
+        public static bool VerifyMd5Hash(string? input, string hash)
+        {
+            if (input == null) return false;
+            // Hash the input.
+            var hashOfInput = MD5X2String(input);
+            // Create a StringComparer an compare the hashes.
+            var comparer = StringComparer.OrdinalIgnoreCase;
+            return 0 == comparer.Compare(hashOfInput, hash);
         }
 
     }

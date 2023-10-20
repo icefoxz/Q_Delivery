@@ -22,114 +22,6 @@ namespace Delivery.EntityFramework.Core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Lingau", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("create_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("create_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("del_Status")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("del_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("del_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("expand_Desc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("expand_Order")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("lingau_Balance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("person_Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("update_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("update_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
-
-                    b.HasIndex("person_Id", "del_Status");
-
-                    b.ToTable("sys_Lingau", (string)null);
-                });
-
-            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Lingau_OptLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("create_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("create_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("del_Status")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("del_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("del_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("expand_Desc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("expand_Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("opt_BeUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("opt_BeginAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("opt_EndAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("opt_Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("opt_User")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("update_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("update_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
-
-                    b.HasIndex("opt_User", "opt_BeUser", "del_Status");
-
-                    b.ToTable("sys_Lingau_OptLog", (string)null);
-                });
-
             modelBuilder.Entity("Delivery.Domains.OrderEntitys.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -164,6 +56,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("order_BenginPlaceId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("order_CreateDeptId")
@@ -174,13 +67,15 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("order_EndLat")
+                    b.Property<decimal>("order_EndLat")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("order_EndLng")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("order_EndLng")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("order_EndPlaceId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("order_GoddsNums")
@@ -249,6 +144,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("order_StateId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("order_Status")
@@ -270,7 +166,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.ToTable("sys_Order", (string)null);
                 });
 
-            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Order_TagOrReport", b =>
+            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Order_Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -297,24 +193,15 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
 
-                    b.Property<bool>("isEnable")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
                     b.Property<Guid>("order_Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("order_TagOrReport_Name")
+                    b.Property<string>("order_Tag_Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("tagManager_Id")
+                    b.Property<Guid>("tag_Id")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("tag_Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("update_Time")
                         .HasColumnType("datetime2");
@@ -328,9 +215,11 @@ namespace Delivery.EntityFramework.Core.Migrations
 
                     b.HasIndex("order_Id");
 
-                    b.HasIndex("order_TagOrReport_Name", "order_Id", "del_Status");
+                    b.HasIndex("tag_Id");
 
-                    b.ToTable("sys_Order_TagOrReport", (string)null);
+                    b.HasIndex("order_Tag_Name", "order_Id", "del_Status");
+
+                    b.ToTable("sys_Order_Tag", (string)null);
                 });
 
             modelBuilder.Entity("Delivery.Domains.OrderEntitys.Tag", b =>
@@ -360,11 +249,6 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
 
-                    b.Property<bool>("isEnable")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
                     b.Property<string>("tag_Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -384,63 +268,10 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.ToTable("sys_Tag", (string)null);
                 });
 
-            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Tag_Manager", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("create_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("create_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("del_Status")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("del_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("del_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("expand_Desc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("expand_Order")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("tag_Id")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("tag_Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("update_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("update_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
-
-                    b.HasIndex("tag_Id", "tag_Type", "del_Status");
-
-                    b.ToTable("sys_Tag_Manager", (string)null);
-                });
-
             modelBuilder.Entity("Delivery.Domains.SystemEntitys.SystemDict", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("create_Time")
@@ -459,16 +290,12 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dict_JsonValue")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dict_Key")
                         .IsRequired()
-                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("dict_Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dict_Value")
                         .IsRequired()
@@ -479,9 +306,6 @@ namespace Delivery.EntityFramework.Core.Migrations
 
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
-
-                    b.Property<bool?>("isSystemBuilt")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("update_Time")
                         .HasColumnType("datetime2");
@@ -496,62 +320,6 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.HasIndex("dict_Key", "del_Status");
 
                     b.ToTable("sys_Dict", (string)null);
-                });
-
-            modelBuilder.Entity("Delivery.Domains.SystemEntitys.SystemFile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("create_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("create_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("data_Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("data_Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("del_Status")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("del_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("del_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("expand_Desc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("expand_Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("file_Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("file_Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("update_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("update_User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
-
-                    b.HasIndex("del_Status");
-
-                    b.ToTable("sys_File", (string)null);
                 });
 
             modelBuilder.Entity("Delivery.Domains.SystemEntitys.SystemLog", b =>
@@ -581,47 +349,24 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
 
-                    b.Property<string>("log_ApiMethod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("log_ApiPath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("log_Browser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("log_BrowserInfo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("log_Device")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("log_ElapsedMilliseconds")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("log_Message")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("log_OptIP")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("log_OptPort")
-                        .HasColumnType("int");
-
+                     
                     b.Property<string>("log_OptTime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("log_OptUser")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("log_Os")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("log_Params")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("log_Type")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("update_Time")
@@ -634,7 +379,7 @@ namespace Delivery.EntityFramework.Core.Migrations
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
 
-                    b.HasIndex("log_OptIP", "log_OptUser", "log_Type", "del_Status");
+                    b.HasIndex("log_OptIP", "log_OptUser",  "log_Type", "del_Status");
 
                     b.ToTable("sys_Log", (string)null);
                 });
@@ -652,9 +397,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -666,6 +409,9 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dept_FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("dept_Level")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dept_Name")
@@ -718,9 +464,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -728,7 +472,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<string>("del_User")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("dept_Id")
+                    b.Property<Guid>("dept_Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("expand_Desc")
@@ -771,9 +515,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -819,9 +561,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -852,10 +592,6 @@ namespace Delivery.EntityFramework.Core.Migrations
 
                     b.Property<Guid>("menu_Id")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("menu_IdArray")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("update_Time")
                         .HasColumnType("datetime2");
@@ -889,9 +625,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -905,24 +639,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("isOuterJoin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("menu_ComponentName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("menu_FileName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("menu_FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("menu_Icon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("menu_Link")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("menu_Name")
@@ -933,6 +650,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("menu_Path")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("menu_PlatFrom")
@@ -940,6 +658,9 @@ namespace Delivery.EntityFramework.Core.Migrations
 
                     b.Property<string>("menu_SimpleName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("menu_Type")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("update_Time")
                         .HasColumnType("datetime2");
@@ -969,9 +690,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -980,6 +699,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("dept_Id")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("expand_Desc")
@@ -987,9 +707,6 @@ namespace Delivery.EntityFramework.Core.Migrations
 
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
-
-                    b.Property<Guid?>("job_Id")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("per_Address")
                         .HasColumnType("nvarchar(max)");
@@ -1011,6 +728,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("per_NormalizedPhone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("per_Phone")
@@ -1023,12 +741,15 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("per_Type")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("per_UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("per_UserPwd")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("update_Time")
@@ -1042,8 +763,6 @@ namespace Delivery.EntityFramework.Core.Migrations
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
 
                     b.HasIndex("dept_Id");
-
-                    b.HasIndex("job_Id");
 
                     b.HasIndex("del_Status", "dept_Id");
 
@@ -1063,9 +782,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("del_Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("del_Time")
                         .HasColumnType("datetime2");
@@ -1073,7 +790,7 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<string>("del_User")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("dept_Id")
+                    b.Property<Guid>("dept_Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("expand_Desc")
@@ -1082,15 +799,12 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Property<int?>("expand_Order")
                         .HasColumnType("int");
 
-                    b.Property<bool>("isEnable")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
                     b.Property<Guid?>("limit_Id")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("person_Id")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("update_Time")
@@ -1126,26 +840,23 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.ToTable("sys_User", (string)null);
                 });
 
-            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Order_TagOrReport", b =>
+            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Order_Tag", b =>
                 {
                     b.HasOne("Delivery.Domains.OrderEntitys.Order", "orderInfo")
-                        .WithMany("order_TagOrReportInfos")
+                        .WithMany("order_TagInfos")
                         .HasForeignKey("order_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("orderInfo");
-                });
-
-            modelBuilder.Entity("Delivery.Domains.OrderEntitys.Tag_Manager", b =>
-                {
-                    b.HasOne("Delivery.Domains.OrderEntitys.Tag", "TagInfo")
-                        .WithMany("tag_ManagerList")
+                    b.HasOne("Delivery.Domains.OrderEntitys.Tag", "tagInfo")
+                        .WithMany("order_TagInfos")
                         .HasForeignKey("tag_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("TagInfo");
+                    b.Navigation("orderInfo");
+
+                    b.Navigation("tagInfo");
                 });
 
             modelBuilder.Entity("Delivery.Domains.UserEntitys.Job", b =>
@@ -1153,7 +864,8 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.HasOne("Delivery.Domains.UserEntitys.Dept", "deptInfo")
                         .WithMany("jobInfos")
                         .HasForeignKey("dept_Id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("deptInfo");
                 });
@@ -1182,16 +894,10 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.HasOne("Delivery.Domains.UserEntitys.Dept", "deptInfo")
                         .WithMany("personInfos")
                         .HasForeignKey("dept_Id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Delivery.Domains.UserEntitys.Job", "jobInfo")
-                        .WithMany("personInfos")
-                        .HasForeignKey("job_Id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("deptInfo");
-
-                    b.Navigation("jobInfo");
                 });
 
             modelBuilder.Entity("Delivery.Domains.UserEntitys.User", b =>
@@ -1199,17 +905,20 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.HasOne("Delivery.Domains.UserEntitys.Dept", "deptInfo")
                         .WithMany("userInfos")
                         .HasForeignKey("dept_Id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Delivery.Domains.UserEntitys.Limit", "limitInfo")
                         .WithMany("userInfos")
                         .HasForeignKey("limit_Id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Delivery.Domains.UserEntitys.Person", "personInfo")
                         .WithMany("userInfos")
                         .HasForeignKey("person_Id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("deptInfo");
 
@@ -1220,12 +929,12 @@ namespace Delivery.EntityFramework.Core.Migrations
 
             modelBuilder.Entity("Delivery.Domains.OrderEntitys.Order", b =>
                 {
-                    b.Navigation("order_TagOrReportInfos");
+                    b.Navigation("order_TagInfos");
                 });
 
             modelBuilder.Entity("Delivery.Domains.OrderEntitys.Tag", b =>
                 {
-                    b.Navigation("tag_ManagerList");
+                    b.Navigation("order_TagInfos");
                 });
 
             modelBuilder.Entity("Delivery.Domains.UserEntitys.Dept", b =>
@@ -1235,11 +944,6 @@ namespace Delivery.EntityFramework.Core.Migrations
                     b.Navigation("personInfos");
 
                     b.Navigation("userInfos");
-                });
-
-            modelBuilder.Entity("Delivery.Domains.UserEntitys.Job", b =>
-                {
-                    b.Navigation("personInfos");
                 });
 
             modelBuilder.Entity("Delivery.Domains.UserEntitys.Limit", b =>

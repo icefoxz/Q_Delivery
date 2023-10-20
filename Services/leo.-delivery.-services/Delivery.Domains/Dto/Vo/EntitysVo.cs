@@ -218,8 +218,9 @@ namespace Delivery.Domains.Dto.Vo
         /// <returns></returns>
         public static IEnumerable<UserResponse> toVo(this IEnumerable<User> users, IEnumerable<Dept> depts, List<Person> persons, List<Limit> limits = null)
         {
-            return users?.Select(user =>
+            return users?.ToList()?.Select(user =>
             {
+               var personInfo= persons?.FirstOrDefault(item => item.Id == user.person_Id);
                 return new UserResponse()
                 {
                     Id = user.Id,
@@ -232,7 +233,9 @@ namespace Delivery.Domains.Dto.Vo
                     limit_Id = user.limit_Id,
                     limit_Name = limits?.FirstOrDefault(item => item.Id == user.limit_Id)?.limit_Name ?? "",
                     person_Id = user.person_Id,
-                    person_Name = persons?.FirstOrDefault(item => item.Id == user.person_Id)?.per_Name ?? "",
+                    person_Type= personInfo?.per_Type ??"",
+                    person_Name = personInfo?.per_Name ?? "",
+                    isBindPerson=personInfo !=null,
                     create_User = user.create_User,
                     create_Time = Convert.ToDateTime(user.create_Time).ToString("yyyy-MM-dd HH:mm:ss"),
                 };

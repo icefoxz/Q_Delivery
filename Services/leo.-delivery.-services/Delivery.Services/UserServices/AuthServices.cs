@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
-using Microsoft.AspNetCore.Identity;
 
 namespace Delivery.Services.UserServices
 {
@@ -42,25 +41,25 @@ namespace Delivery.Services.UserServices
         /// <param name="userRequest"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<ResultMessage> LoginOnAsync(UserRequest userRequest)
+        public async Task<ResultMessage> LoginAsync(UserRequest userRequest)
         {
             try
             {
                 // 1:查询用户信息
-                var user = await _userServices.UserAccountVerifictionAsync(userRequest);
+                var user = await _userServices.UserAccountVerificationAsync(userRequest);
 
                 //2:校验用户是否存在，以及是否禁用
                 if (user is null)
-                    return new ResultMessage(false, $"{userRequest.user_LoginName}该用户不存在");
+                    return new ResultMessage(false, $"{userRequest.user_LoginName} User not found!");
                 if (!user.isEnable)
-                    return new ResultMessage(false, $"账号已停用");
-                if (user.user_LoginPwdCipher.ToUpper() != userRequest.user_LoginPwd.ToUpper())
-                    return new ResultMessage(false, $"用户名或密码错误，请重新输入");
-                var person = await _userDbContext.Persons.SingleOrDefaultAsync(item => item.Id == user.person_Id);
-                if (person is null)
-                    return new ResultMessage(false, "绑定人员不存在");
-                if (person.per_Type == "2")
-                    return new ResultMessage(false, "骑手禁止访问平台");
+                    return new ResultMessage(false, $"User suspended!");
+                if (user.user_LoginPwdCipher.ToUpper() != userRequest.user_LoginPwd?.ToUpper())
+                    return new ResultMessage(false, $"User or password error!");
+                //var person = await _userDbContext.Persons.SingleOrDefaultAsync(item => item.Id == user.person_Id);
+                if (!user.isBindPerson)
+                    return new ResultMessage(false, "Bound person doesn't exist");
+                if (user.person_Type == "2")
+                    return new ResultMessage(false, "Riders are prohibited to access!");
 
                 // 3:生成Token
                 var token = TokenHelp.GetToken(userRequest.user_LoginName ?? "");
@@ -99,12 +98,12 @@ namespace Delivery.Services.UserServices
                 #region 校验信息
 
                 if (string.IsNullOrEmpty(limitId))
-                    return new ResultMessage(false, "授权失败，请重新登录");
+                    return new ResultMessage(false, "Authorization failed, please log in again");
 
                 // 验证权限组
                 var limitInfo = await _limitServices.LimitListAsync(new LimitRequest() { Id = new Guid(limitId) });
                 if (!limitInfo?.Any() ?? false)
-                    return new ResultMessage(false, "当前用户未绑定权限组，或绑定的权限组不存在！");
+                    return new ResultMessage(false, "User isn't bound to a permission group, or the permission group doesn't exist！");
 
                 // 验证权限组关联
                 var limitMenuRealtionList = await _limitMenuServices.LimitMenuFullListAsync(new LimitMenuRequest() { limit_Id = limitInfo?.FirstOrDefault()?.Id ?? default });
@@ -152,8 +151,63 @@ namespace Delivery.Services.UserServices
             catch (Exception ex)
             {
                 _logger.LogError($"[获取用户菜单信息异常]：{ex.Message}");
-                return new ResultMessage(false, "获取用户信息异常");
+                return new ResultMessage(false, "Exception in obtaining user information");
             }
+        }
+
+        /// <summary>
+        /// App端登录
+        /// </summary>
+        /// <param name="userRequest"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<ResultMessage> AppLoginAsync(UserRequest userRequest = null)
+        {
+            //Nonnull check
+            if (string.IsNullOrEmpty(userRequest.user_LoginName) || string.IsNullOrWhiteSpace(userRequest.user_LoginPwd))
+                return new ResultMessage(false, "The login account or password cannot be empty！");
+
+            var user = await _userServices.UserAccountVerificationAsync(new UserRequest()
+            {
+                user_LoginName = userRequest.user_LoginName,
+            });
+
+            //User check
+            if (user is null)
+                return new ResultMessage(false, "The user does not exist");
+
+            //Pwd check
+            if (!MD5Helper.VerifyMd5Hash(userRequest.user_LoginPwd,user.user_LoginPwdCipher))
+                return new ResultMessage(false, "User password error");
+
+            //Status check
+            if (!user.isEnable)
+                return new ResultMessage(false, $"Account deactivated");
+
+            //BindPerson check
+            if (!user.isBindPerson)
+                return new ResultMessage(false, "The bound person does not exist");
+
+            //Person identity check
+            if (user.person_Type != "2")
+                return new ResultMessage(false, "Only riders are allowed to log in");
+
+            //Generate Token
+            var token = TokenHelp.GetToken(userRequest.user_LoginName ?? "");
+            
+            //In cache
+            _memoryCache.Set(token, JsonConvert.SerializeObject(new BaseQuery()
+            {
+                user_Id = user.Id.ToString(),
+                user_Name = user.person_Name,
+                login_Name = user.user_LoginName,
+                dept_Id = user.dept_Id?.ToString() ?? "",
+                dept_Name = user.dept_Name,
+                limit_Id = user.limit_Id?.ToString() ?? "",
+            }));
+
+            // 返回信息根据APP端需要进行调整
+            return new ResultMessage(true, token);
         }
     }
 }

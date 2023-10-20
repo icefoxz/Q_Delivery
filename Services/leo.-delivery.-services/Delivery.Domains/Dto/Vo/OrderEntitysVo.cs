@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Delivery.Domains.Dto.Vo
 {
-    public static class OrderEntitiesVo
+    public static class OrderEntitysVo
     {
         #region 订单信息
 
@@ -40,7 +40,7 @@ namespace Delivery.Domains.Dto.Vo
                 if (fileList?.Any() ?? false)
                 {
                     //var config = ConfigFileHelper.GetConfig<CommonConfig>(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, CommonConfigConst.systemConfigUrl));
-                    var imgUrl=ConfigHelp.GetStringFromFile("imgUrlFolder");
+                    var imgUrl=ConfigHelp.GetString("imgUrlFolder");
                     item.fileUrlList = fileList.Where(file => file.data_Id == item.Id.ToString())?.Select(file => new imgUrl()
                     {
                         fileId= file.Id,

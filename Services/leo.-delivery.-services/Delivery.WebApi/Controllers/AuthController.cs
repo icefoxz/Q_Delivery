@@ -5,7 +5,6 @@ using Delivery.WebApi.Filter;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Serialization;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Delivery.WebApi.Controllers
 {
@@ -28,7 +27,7 @@ namespace Delivery.WebApi.Controllers
         [HttpPost]
         public async Task<ResultMessage> LoginOn([FromBody] LoginRequest loginRequest)
         {
-            return await _authServices.LoginOnAsync(new UserRequest()
+            return await _authServices.LoginAsync(new UserRequest()
             {
                 user_LoginName = loginRequest.loginName,
                 user_LoginPwd = loginRequest.loginPwd

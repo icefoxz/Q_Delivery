@@ -264,6 +264,13 @@ namespace Delivery.Services.OrderServices
                 // 处理文件
                 if (orderRequest.fileIdList?.Any() ?? false)
                 {
+                    //var fileList = await _systemFileServices.SystemFileListAsync(new Domains.Dto.SystemServicesDto.SystemFile.SystemFileRequest()
+                    //{
+                    //    idList = orderRequest.fileIdList
+                    //});
+                    //fileList.ForEach(file => file.data_Id = order.Id.ToString());
+                    //_orderDbContext.UpdateRange(fileList);
+
                     await _systemDbContext.SystemFiles
                         .Where(item => orderRequest.fileIdList.Contains(item.Id))
                         .ExecuteUpdateAsync(
@@ -285,6 +292,15 @@ namespace Delivery.Services.OrderServices
                                 !orderRequest.fileIdList.Contains(item.Id)
                                 )
                             .ExecuteDeleteAsync();
+
+                        //var fileDeleteList = await _systemFileServices.SystemFileListAsync(new Domains.Dto.SystemServicesDto.SystemFile.SystemFileRequest()
+                        //{
+                        //    data_Id = orderRequest.Id?.ToString()
+                        //});
+                        //var deleteFileList = fileDeleteList.Where(item => !orderRequest.fileIdList.Contains(item.Id)).ToList();
+
+                        //if (deleteFileList?.Any() ?? false)
+                        //    _orderDbContext.RemoveRange(deleteFileList);
                     }
                 }
 

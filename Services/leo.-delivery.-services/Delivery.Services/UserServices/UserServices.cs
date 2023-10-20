@@ -116,7 +116,7 @@ namespace Delivery.Services.UserServices
                     // Edit
                     var userTemp = await _userDbContext.Users.FirstOrDefaultAsync(item => item.Id == userRequest.Id);
                     if (userTemp is null)
-                        return new ResultMessage(false, "保存失败，该用户不存在");
+                        return new ResultMessage(false, "User not exist!");
 
                     if (userTemp!.user_LoginName != userRequest.user_LoginName)
                         isVerifyDept = true;
@@ -133,7 +133,7 @@ namespace Delivery.Services.UserServices
                 // 验证名称
                 if (isVerifyDept)
                     if (await _userDbContext.Users.AnyAsync(item => item.user_LoginName == userRequest.user_LoginName && item.Id != userRequest.Id))
-                        return new ResultMessage(false, $"{userRequest.user_LoginName}该登录用户已存在");
+                        return new ResultMessage(false, $"{userRequest.user_LoginName} already exists!");
 
                 if (userRequest.Id == Guid.Empty)
                     await _userDbContext.AddAsync(user);
@@ -142,12 +142,12 @@ namespace Delivery.Services.UserServices
 
                 result &= await _userDbContext.SaveChangesAsync() > 0;
 
-                return new ResultMessage(result, result ? "保存成功" : "保存失败");
+                return new ResultMessage(result, result ? "Saved" : "Unsaved!");
             }
             catch (Exception ex)
             {
                 _logger.LogError($"[用户保存异常]:{ex.Message}");
-                return new ResultMessage(false, "保存失败");
+                return new ResultMessage(false, "Dave failed!");
             }
         }
 
@@ -210,11 +210,28 @@ namespace Delivery.Services.UserServices
         /// <param name="UserRequest"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<UserResponse> UserAccountVerifictionAsync(UserRequest UserRequest = null)
+        public async Task<UserResponse> UserAccountVerificationAsync(UserRequest userRequest = null)
         {
-            var user = (await UserFullListAsync(UserRequest)).FirstOrDefault() ?? null;
+            var userList = await _userDbContext.Users.AsNoTracking().Where(item => item.user_LoginName == userRequest.user_LoginName).ToListAsync();
 
-            return user;
+            if (userList?.Any() ?? false)
+            {
+                var userInfo = userList.FirstOrDefault();
+                var deptId = (userInfo?.dept_Id ?? null);
+                var personId = (userInfo?.person_Id ?? null);
+                var limitId = (userInfo?.limit_Id ?? null);
+
+                var deptList = await _userDbContext.Depts.AsNoTracking().Where(item => item.Id == deptId).ToListAsync();
+                var personList = await _userDbContext.Persons.AsNoTracking().Where(item => item.Id == personId).ToListAsync();
+                var limitList = await _userDbContext.Limits.AsNoTracking().Where(item => item.Id == limitId).ToListAsync();
+
+                return userList?
+                        .toVo(deptList, personList, limitList)?
+                        .FirstOrDefault() ?? null;
+
+            }
+
+            return null;
         }
     }
 }

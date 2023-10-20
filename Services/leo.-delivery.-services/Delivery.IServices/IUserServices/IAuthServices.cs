@@ -9,7 +9,8 @@ namespace Delivery.IServices.IUserServices
     /// </summary>
     public interface IAuthServices
     {
-        Task<ResultMessage> LoginOnAsync(UserRequest userRequest = null);
+        Task<ResultMessage> LoginAsync(UserRequest userRequest = null);
+        Task<ResultMessage> AppLoginAsync(UserRequest userRequest = null);
         Task<ResultMessage> GetUserLimitAndMenuInfo(UserRequest userRequest = null);
     }
 }
