@@ -46,7 +46,7 @@ namespace Delivery.Services.SystemServices
             if (string.IsNullOrEmpty(systemDictRequest?.dict_Name) == false)
                 dictQuery = dictQuery.Where(item => item.dict_Name == systemDictRequest.dict_Name);
 
-            if (systemDictRequest.ParentId.Guid_NoEmpty() == false)
+            if (systemDictRequest.ParentId.Guid_IsEmpty() == false)
                 dictQuery = dictQuery.Where(item => item.ParentId == systemDictRequest.ParentId || item.Id == systemDictRequest.ParentId);
 
             if (systemDictRequest?.isSystemBuilt != null)
@@ -64,13 +64,13 @@ namespace Delivery.Services.SystemServices
             var dictList = await _systemDbContext.SystemDicts.ToListAsync();
             var dictItem = dictList.Where(item => item.dict_Key == systemDictRequest.dict_Key);
             //&& lingauRequest.Id.Guid_NoEmpty()
-            if (dictItem.FirstOrDefault(item => systemDictRequest.Id.Guid_NoEmpty() && item.dict_Key == systemDictRequest.dict_Key && item.ParentId == systemDictRequest.ParentId) != null)
+            if (dictItem.FirstOrDefault(item => systemDictRequest.Id.Guid_IsEmpty() && item.dict_Key == systemDictRequest.dict_Key && item.ParentId == systemDictRequest.ParentId) != null)
                 return new ResultMessage(false, $"保存失败，{systemDictRequest.dict_Name}该字典类型已存在，不允许重复添加");
 
             //if (dictList.FirstOrDefault(item => item.dict_Name == systemDictRequest.dict_Name && systemDictRequest.ParentId == item.ParentId) != null)
             //    return new ResultMessage(false, $"保存失败，{systemDictRequest.dict_Name}该字典项已存在，不允许重复添加");
 
-            if (systemDictRequest.Id.Guid_NoEmpty())
+            if (systemDictRequest.Id.Guid_IsEmpty())
             {
                 dict = _mapper.Map<SystemDict>(systemDictRequest);
                 await _systemDbContext.AddAsync(dict);

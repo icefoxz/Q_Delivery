@@ -133,7 +133,7 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         public string? order_EndPlaceId { get; set; }
 
         /// <summary>
-        /// 舟属Id
+        /// 州属Id
         /// </summary>
         public string? order_StateId { get; set; }
 

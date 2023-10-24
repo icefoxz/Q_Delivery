@@ -18,6 +18,7 @@ namespace Delivery.WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
+
             TokenHelp.SetTokenSecret(config["AccessTokenKey"]);
             // Add services to the container.
             builder.Services.AddControllers();
@@ -38,6 +39,8 @@ namespace Delivery.WebApi
             builder.Services.AddSwaggerServices();
 
 #if DEBUG
+            Console.WriteLine($"骑手单位Id = {config.GetRiderDeptId()}");
+            Console.WriteLine($"骑手权限Id = {config.GetRiderPermission()}");
             // azure 支持外设cors, 所以不需要配置
             // ConfigureCors
             builder.Services.AddCors(options =>

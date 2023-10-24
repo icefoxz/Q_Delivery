@@ -47,13 +47,13 @@ namespace Delivery.Services.UserServices
                 userQuery = userQuery.Where(item => item.user_LoginName.Contains(userRequest.user_LoginName));
 
 
-            if (userRequest?.limit_Id.Guid_NoEmpty() == false)
+            if (userRequest?.limit_Id.Guid_IsEmpty() == false)
                 userQuery = userQuery.Where(item => item.limit_Id == userRequest!.limit_Id);
 
             if (userRequest?.dept_IdArray?.Any() ?? false)
                 userQuery = userQuery.Where(item => userRequest.dept_IdArray.Contains(item.dept_Id));
 
-            else if (userRequest?.dept_Id.Guid_NoEmpty() == false)
+            else if (userRequest?.dept_Id.Guid_IsEmpty() == false)
                 userQuery = userQuery.Where(item => item.dept_Id == userRequest!.dept_Id);
 
             var users = await userQuery.OrderBy(item => item.create_Time).ToListAsync();
@@ -142,7 +142,7 @@ namespace Delivery.Services.UserServices
 
                 result &= await _userDbContext.SaveChangesAsync() > 0;
 
-                return new ResultMessage(result, result ? "Saved" : "Unsaved!");
+                return new ResultMessage(result, result ? "Saved" : "Unsaved!", 1, user);
             }
             catch (Exception ex)
             {

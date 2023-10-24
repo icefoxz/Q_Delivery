@@ -35,7 +35,7 @@ namespace Delivery.Services.OrderServices
             //if (string.IsNullOrEmpty(tagManagerRequest?.tag_Name) == false)
             //    tagManagerQuery = tagManagerQuery.Where(item => item.tag_Id == tagManagerRequest!.tag_Id);
 
-            if (tagManagerRequest?.tag_Id.Guid_NoEmpty() == false)
+            if (tagManagerRequest?.tag_Id.Guid_IsEmpty() == false)
                 tagManagerQuery = tagManagerQuery.Where(item => item.tag_Id == tagManagerRequest!.tag_Id);
 
             if (tagManagerRequest?.tag_Type > 0 && tagManagerRequest?.tag_Type != null)
@@ -65,7 +65,7 @@ namespace Delivery.Services.OrderServices
             tagManager.tag_Type = tagManagerRequest.tag_Type?.ToString();
             tagManager.expand_Desc = tagManagerRequest.expand_Desc;
 
-            if (tagManagerRequest.Id.Guid_NoEmpty())
+            if (tagManagerRequest.Id.Guid_IsEmpty())
                 await _orderDbContext.AddAsync(tagManager);
             else
                 _orderDbContext.Update(tagManager);

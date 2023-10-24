@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Delivery.Commons.Enum
 {
-    public enum ErrorCodeEnum
+    public enum HttpCodeEnum
     {
         /// <summary>
         /// 接口调用成功

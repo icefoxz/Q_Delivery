@@ -197,7 +197,7 @@ namespace Delivery.Domains.Dto.Vo
 
                     // 预留拓展
                     per_TypeId = person.per_Type,
-                    per_Type = person.per_Type == "1" ? "内部人员" : person.per_Type == "2" ? "骑手" : "普通用户",
+                    per_Type = person.GetPersonTypeTitle(),
                     per_UserName = person.per_UserName,
                     per_UserPwd = person.per_UserPwd,
                     per_NormalizedPhone = person.per_NormalizedPhone,

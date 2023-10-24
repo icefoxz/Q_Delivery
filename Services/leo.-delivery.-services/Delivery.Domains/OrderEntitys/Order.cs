@@ -42,6 +42,11 @@ namespace Delivery.Domains.OrderEntitys
 
         #endregion
 
+        #region 新增配送信息
+        public Guid? order_SenderPersonId { get; set; }
+        
+        #endregion
+
         #region 物品信息
 
         /// <summary>

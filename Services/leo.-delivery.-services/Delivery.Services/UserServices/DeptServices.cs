@@ -33,13 +33,13 @@ namespace Delivery.Services.UserServices
             //var parentDept = await _userDbContext.Depts.OrderBy(item => item.create_Time).FirstOrDefaultAsync();
 
             // 验证单位名称是否存在
-            if ((bool)(deptRequest?.Id.Guid_NoEmpty()))
+            if ((bool)(deptRequest?.Id.Guid_IsEmpty()))
             {
                 // Insert
                 if ((await _userDbContext.Depts.FirstOrDefaultAsync(item => item.dept_Name == deptRequest.dept_Name)) != null)
                     isVerifyDept = true;
             }
-            else if (deptRequest?.Id.Guid_NoEmpty() == false)
+            else if (deptRequest?.Id.Guid_IsEmpty() == false)
             {
                 // Edit
                 var deptList = await _userDbContext.Depts.Where(item => item.Id == deptRequest.Id || item.dept_Name == deptRequest.dept_Name).ToListAsync();
@@ -54,7 +54,7 @@ namespace Delivery.Services.UserServices
                 if ((await _userDbContext.Depts.FirstOrDefaultAsync(item => item.dept_Name == deptRequest.dept_Name)) != null)
                     return new ResultMessage(false, $"{deptRequest.dept_Name}该名称已存在，不允许重复添加！");
 
-            if (deptRequest.Id.Guid_NoEmpty())
+            if (deptRequest.Id.Guid_IsEmpty())
                 await _userDbContext.Depts.AddAsync(new Dept()
                 {
                     dept_Name = deptRequest.dept_Name,
@@ -91,12 +91,12 @@ namespace Delivery.Services.UserServices
             if (string.IsNullOrWhiteSpace(deptRequest?.dept_Phone) == false)
                 deptQuery = deptQuery.Where(item => item.dept_Phone!.Contains(deptRequest.dept_Phone));
 
-            if (deptRequest?.Id.Guid_NoEmpty() == false)
+            if (deptRequest?.Id.Guid_IsEmpty() == false)
                 deptQuery = deptQuery.Where(item => deptRequest.Id == item.Id);
             else if (deptRequest?.IdList?.Any() ?? false)
                 deptQuery = deptQuery.Where(item => deptRequest.IdList.Contains(item.Id));
 
-            if (deptRequest?.dept_ParentId.Guid_NoEmpty() == false)
+            if (deptRequest?.dept_ParentId.Guid_IsEmpty() == false)
                 deptQuery = deptQuery.Where(item => deptRequest.dept_ParentId == item.dept_ParentId);
 
             var depts = await deptQuery.OrderBy(item => item.expand_Order).OrderBy(item => item.create_Time).ToListAsync();
@@ -177,7 +177,7 @@ namespace Delivery.Services.UserServices
             {
                 var depts = new List<DeptResponse>();
 
-                if (parentId.Guid_NoEmpty())
+                if (parentId.Guid_IsEmpty())
                     depts = deptList.Where(item => item.dept_ParentId == parentId || item.dept_ParentId == Guid.Empty).ToList();
                 else
                     depts = deptList.Where(item => item.dept_ParentId == parentId).ToList();

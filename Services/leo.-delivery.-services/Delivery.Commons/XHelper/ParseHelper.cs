@@ -146,35 +146,20 @@ namespace Delivery.Commons.XHelper
         /// <param name="def">无效时返回</param>
         /// <param name="str">要转换的String</param>
         /// <returns>Long结果</returns>
-        public static bool Guid_NoEmpty(this Guid? str)
-        {
-            var result = false;
+        public static bool Guid_IsEmpty(this Guid? str) => str?.Guid_IsEmpty() ?? true;
 
-            if (str is null || str == Guid.Empty)
-                result = true;
-
-            return result;
-        }
         /// <summary>
         /// Guid
         /// </summary>
         /// <param name="def">无效时返回</param>
         /// <param name="str">要转换的String</param>
         /// <returns>Long结果</returns>
-        public static bool Guid_NoEmpty(this Guid str)
-        {
-            var result = false;
-
-            if (str == Guid.Empty)
-                result = true;
-
-            return result;
-        }
+        public static bool Guid_IsEmpty(this Guid str) => str == Guid.Empty;
 
         /// <summary>
         /// 时间戳起始日期
         /// </summary>
-        public static DateTime TimestampStart = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        public static DateTime TimestampStart = DateTime.UnixEpoch;//(1970, 1, 1, 0, 0, 0, 0);
 
         /// <summary>
         /// 转整型

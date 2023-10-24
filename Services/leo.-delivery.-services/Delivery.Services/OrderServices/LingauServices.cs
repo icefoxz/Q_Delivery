@@ -46,7 +46,7 @@ namespace Delivery.Services.OrderServices
         {
             IQueryable<Lingau> lingauQuery = _orderDbContext.Lingaus.AsNoTracking();
 
-            if (lingauRequest?.person_Id.Guid_NoEmpty() == false)
+            if (lingauRequest?.person_Id.Guid_IsEmpty() == false)
                 lingauQuery = lingauQuery.Where(item => item.person_Id == lingauRequest.person_Id);
 
             var lingaus = await lingauQuery.OrderBy(item => item.expand_Order).OrderBy(item => item.create_Time).ToListAsync();
@@ -60,10 +60,10 @@ namespace Delivery.Services.OrderServices
             var lingau = new Lingau();
             var lingauList = await _orderDbContext.Lingaus.Where(item => item.person_Id == lingauRequest.person_Id || item.Id == lingauRequest.Id).ToListAsync();
 
-            if (lingauList.FirstOrDefault(item => item.person_Id == lingauRequest.person_Id) != null && lingauRequest.Id.Guid_NoEmpty())
+            if (lingauList.FirstOrDefault(item => item.person_Id == lingauRequest.person_Id) != null && lingauRequest.Id.Guid_IsEmpty())
                 return new ResultMessage(false, $"保存失败，{lingauRequest.person_Name}该人员已存在，不允许重复添加");
 
-            if (lingauRequest.Id.Guid_NoEmpty())
+            if (lingauRequest.Id.Guid_IsEmpty())
             {
                 lingau = _mapper.Map<Lingau>(lingauRequest);
                 await _orderDbContext.AddAsync(lingau);

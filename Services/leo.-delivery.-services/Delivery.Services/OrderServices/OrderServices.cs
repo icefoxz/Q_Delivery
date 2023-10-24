@@ -64,9 +64,9 @@ namespace Delivery.Services.OrderServices
             });
 
             // 关系映射
-            var orderReuturn = _mapper.Map<List<OrderResponse>>(orderList.CurrentPageData);
+            var orderResponses = _mapper.Map<List<OrderResponse>>(orderList.CurrentPageData);
             // 数据整合
-            var objData = orderReuturn.toVo(orderTagList, fileList);
+            var objData = orderResponses.toVo(orderTagList, fileList);
             var resultData = new List<OrderResponse>();
             var pageData = new PageList<OrderResponse>();
             if (orderRequest.tagManager_IdList?.Any() ?? false)
@@ -150,7 +150,7 @@ namespace Delivery.Services.OrderServices
             IQueryable<Order> pagListQuery = _orderDbContext.Orders.AsNoTracking();
 
             // 订单Id
-            if (!orderRequest.Id.Guid_NoEmpty())
+            if (!orderRequest.Id.Guid_IsEmpty())
                 pagListQuery = pagListQuery.Where(item => orderRequest.Id == item.Id);
             else if (orderRequest.IdList?.Any() ?? false)
                 pagListQuery = pagListQuery.Where(item => orderRequest.IdList.Contains(item.Id));
@@ -205,7 +205,7 @@ namespace Delivery.Services.OrderServices
             IQueryable<Order> orderQuery = _orderDbContext.Orders.AsNoTracking();
 
             // 订单Id
-            if (!orderRequest.Id.Guid_NoEmpty())
+            if (!orderRequest.Id.Guid_IsEmpty())
                 orderQuery = orderQuery.Where(item => orderRequest.Id == item.Id);
             else if (orderRequest.IdList?.Any() ?? false)
                 orderQuery = orderQuery.Where(item => orderRequest.IdList.Contains(item.Id));
@@ -257,7 +257,7 @@ namespace Delivery.Services.OrderServices
                 order.order_CreateDeptId = UserInfoCookie.dept_Id ?? default;
                 order.order_CreateDeptName = UserInfoCookie.dept_Name ?? default;
 
-                if (orderRequest.Id.Guid_NoEmpty())
+                if (orderRequest.Id.Guid_IsEmpty())
                     await _orderDbContext.AddAsync(order);
                 else
                     _orderDbContext.Update(order);

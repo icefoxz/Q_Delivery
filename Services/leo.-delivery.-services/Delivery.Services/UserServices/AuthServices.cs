@@ -164,10 +164,11 @@ namespace Delivery.Services.UserServices
         public async Task<ResultMessage> AppLoginAsync(UserRequest userRequest = null)
         {
             //Nonnull check
-            if (string.IsNullOrEmpty(userRequest.user_LoginName) || string.IsNullOrWhiteSpace(userRequest.user_LoginPwd))
+            if (string.IsNullOrEmpty(userRequest.user_LoginName) ||
+                string.IsNullOrWhiteSpace(userRequest.user_LoginPwd))
                 return new ResultMessage(false, "The login account or password cannot be empty！");
 
-            var user = await _userServices.UserAccountVerificationAsync(new UserRequest()
+            var user = await _userServices.UserAccountVerificationAsync(new UserRequest
             {
                 user_LoginName = userRequest.user_LoginName,
             });
@@ -177,7 +178,7 @@ namespace Delivery.Services.UserServices
                 return new ResultMessage(false, "The user does not exist");
 
             //Pwd check
-            if (!MD5Helper.VerifyMd5Hash(userRequest.user_LoginPwd,user.user_LoginPwdCipher))
+            if (!MD5Helper.VerifyMd5Hash(userRequest.user_LoginPwd, user.user_LoginPwdCipher))
                 return new ResultMessage(false, "User password error");
 
             //Status check
@@ -189,25 +190,11 @@ namespace Delivery.Services.UserServices
                 return new ResultMessage(false, "The bound person does not exist");
 
             //Person identity check
-            if (user.person_Type != "2")
-                return new ResultMessage(false, "Only riders are allowed to log in");
-
-            //Generate Token
-            var token = TokenHelp.GetToken(userRequest.user_LoginName ?? "");
-            
-            //In cache
-            _memoryCache.Set(token, JsonConvert.SerializeObject(new BaseQuery()
-            {
-                user_Id = user.Id.ToString(),
-                user_Name = user.person_Name,
-                login_Name = user.user_LoginName,
-                dept_Id = user.dept_Id?.ToString() ?? "",
-                dept_Name = user.dept_Name,
-                limit_Id = user.limit_Id?.ToString() ?? "",
-            }));
+            if (PersonTypes.User.Is(user.person_Type) || PersonTypes.Rider.Is(user.person_Type))
+                return new ResultMessage(false, $"Permission deny! Person type = {user.person_Type}");
 
             // 返回信息根据APP端需要进行调整
-            return new ResultMessage(true, token);
+            return new ResultMessage(true, "Success!", 1, user);
         }
     }
 }

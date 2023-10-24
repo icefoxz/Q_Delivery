@@ -78,7 +78,7 @@ namespace Delivery.Services.OrderServices
                 orderTagQuery = orderTagQuery.Where(item => item.order_Id == orderTagOrReportRequest!.order_Id);
 
             // 订单标签Id
-            if (orderTagOrReportRequest?.tagManager_Id.Guid_NoEmpty() == false)
+            if (orderTagOrReportRequest?.tagManager_Id.Guid_IsEmpty() == false)
                 orderTagQuery = orderTagQuery.Where(item => item.tagManager_Id == orderTagOrReportRequest.tagManager_Id);
 
             // 订单报告或标签名称
@@ -125,7 +125,7 @@ namespace Delivery.Services.OrderServices
                 totalQuery = totalQuery.Where(item => item.order_Id == orderTagOrReportRequest.order_Id);
             }
             // 订单标签Id
-            if (orderTagOrReportRequest?.tagManager_Id.Guid_NoEmpty() == false)
+            if (orderTagOrReportRequest?.tagManager_Id.Guid_IsEmpty() == false)
                 pagListQuery = pagListQuery.Where(item => item.tagManager_Id == orderTagOrReportRequest.tagManager_Id);
 
             // 订单报告或标签名称

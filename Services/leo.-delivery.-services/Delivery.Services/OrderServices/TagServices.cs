@@ -76,7 +76,7 @@ namespace Delivery.Services.OrderServices
             var isVerifyDept = false;
             var tag = new Tag();
             var tagList = await _orderDbContext.Tags.ToListAsync();
-            if (TagRequest.Id.Guid_NoEmpty())
+            if (TagRequest.Id.Guid_IsEmpty())
             {
                 if (tagList.Any(item => item.tag_Name == TagRequest.tag_Name))
                     return new ResultMessage(false, $"{TagRequest.tag_Name}已存在该名称相同的标签");
@@ -94,7 +94,7 @@ namespace Delivery.Services.OrderServices
             tag.tag_Name = TagRequest.tag_Name ?? "";
             tag.expand_Desc = TagRequest.expand_Desc;
 
-            if (TagRequest.Id.Guid_NoEmpty())
+            if (TagRequest.Id.Guid_IsEmpty())
                 await _orderDbContext.Tags.AddAsync(tag);
             else
                 _orderDbContext.Tags.Update(tag);

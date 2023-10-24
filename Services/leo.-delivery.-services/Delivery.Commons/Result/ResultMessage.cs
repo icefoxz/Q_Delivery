@@ -33,7 +33,7 @@ namespace Delivery.Commons.Result
         /// </summary>
         /// <param name="success"></param>
         /// <param name="errorCode"></param>
-        public ResultMessage(bool success, ErrorCodeEnum errorCode)
+        public ResultMessage(bool success, HttpCodeEnum errorCode)
         {
             this.Success = success;
             this.ErrorCode = errorCode;
@@ -52,7 +52,7 @@ namespace Delivery.Commons.Result
             else
             {
                 this.ErrorMsg = msg;
-                this.ErrorCode = ErrorCodeEnum.OperationError;
+                this.ErrorCode = HttpCodeEnum.OperationError;
             }
         }
 
@@ -62,7 +62,7 @@ namespace Delivery.Commons.Result
         /// <param name="success"></param>
         /// <param name="errorCode"></param>
         /// <param name="msg"></param>
-        public ResultMessage(bool success, ErrorCodeEnum errorCode, string msg)
+        public ResultMessage(bool success, HttpCodeEnum errorCode, string msg)
         {
             this.Success = success;
             this.ErrorCode = errorCode;
@@ -80,7 +80,7 @@ namespace Delivery.Commons.Result
         /// <param name="success"></param>
         /// <param name="errorCode"></param>
         /// <param name="obj"></param>
-        public ResultMessage(bool success, ErrorCodeEnum errorCode, object obj)
+        public ResultMessage(bool success, HttpCodeEnum errorCode, object obj)
         {
             this.Success = success;
             this.ErrorCode = errorCode;
@@ -94,7 +94,7 @@ namespace Delivery.Commons.Result
         /// <param name="errorCode"></param>
         /// <param name="msg"></param>
         /// <param name="obj"></param>
-        public ResultMessage(bool success, ErrorCodeEnum errorCode, string msg, object obj)
+        public ResultMessage(bool success, HttpCodeEnum errorCode, string msg, object obj)
         {
             this.Success = success;
             this.ErrorCode = errorCode;
@@ -122,7 +122,7 @@ namespace Delivery.Commons.Result
             else
             {
                 this.ErrorMsg = msg;
-                this.ErrorCode = ErrorCodeEnum.OperationError;
+                this.ErrorCode = HttpCodeEnum.OperationError;
             }
         }
 
@@ -138,7 +138,7 @@ namespace Delivery.Commons.Result
             this.Data = obj;
             if (!success) 
             {
-                this.ErrorCode = ErrorCodeEnum.OperationError;
+                this.ErrorCode = HttpCodeEnum.OperationError;
             }
         }
         /// <summary>
@@ -171,7 +171,7 @@ namespace Delivery.Commons.Result
         /// <summary>
         /// 错误码
         /// </summary>
-        public ErrorCodeEnum? ErrorCode { get; set; }
+        public HttpCodeEnum? ErrorCode { get; set; }
 
         /// <summary>
         /// 消息

@@ -45,7 +45,7 @@ namespace Delivery.Services.UserServices
 
             if (personRequest?.dept_IdArray?.Any() ?? false)
                 personQuery = personQuery.Where(item => personRequest!.dept_IdArray!.Contains((Guid)item.dept_Id));
-            else if (personRequest?.dept_Id.Guid_NoEmpty() == false)
+            else if (personRequest?.dept_Id.Guid_IsEmpty() == false)
                 personQuery = personQuery.Where(item => item.dept_Id == personRequest!.dept_Id);
 
             // 人员类型 1- 内部人员，2-骑手，3-普通用户
@@ -130,7 +130,7 @@ namespace Delivery.Services.UserServices
 
             result &= await _userDbContext.SaveChangesAsync() > 0;
 
-            return new ResultMessage(result, result ? "保存成功" : "保存失败");
+            return new ResultMessage(result, result ? "保存成功" : "保存失败", 1, person);
         }
 
         /// <summary>
