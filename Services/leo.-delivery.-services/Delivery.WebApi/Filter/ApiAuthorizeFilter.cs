@@ -43,11 +43,7 @@ namespace Delivery.WebApi.Filter
 
             var token = context.HttpContext.Request.Headers["Authorization"].ToString();    //ajax请求传过来
             string pattern = "^Bearer (.*?)$";
-            //token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI1ZjMxYzJmNS1iZGFkLTQzYzEtYjkxZC1lOGVlOWI0MzAyYWMiLCJ1c2VyQWNjb3VudCI6ImFkbWluIiwiZXhwIjoxNjk2MDAxNDg1LjQyNDgzNjl9.mTMQrhy7BHib5D7ADqwcbAuiWMsppg1Wv8Et2diAL8A";
-
-            //var t1 = MemoryCacheHelper.Get(token);
-            //var t2 = MemoryCacheHelper.Get(pattern);
-
+          
             if (!Regex.IsMatch(token, pattern))
             {
                 context.Result = new ContentResult { StatusCode = 401, Content = "token不能为空或格式不对!格式为:Bearer {token}" };
