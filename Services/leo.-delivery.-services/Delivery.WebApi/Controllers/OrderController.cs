@@ -42,10 +42,9 @@ namespace Delivery.WebApi.Controllers
         [HttpPost, Route("getOrderPageList")]
         public async Task<ResultMessage> GetOrderPageListAsync([FromBody] OrderRequest orderRequest)
         {
-            return new ResultMessage(true);
-            //var orderList = await _orderServices.OrderFullPageListAsync(orderRequest);
+            var orderList = await _orderServices.OrderFullPageListAsync(orderRequest);
 
-            //return new ResultMessage(true, orderList);
+            return new ResultMessage(true, orderList);
         }
         /// <summary>
         /// 保存订单
