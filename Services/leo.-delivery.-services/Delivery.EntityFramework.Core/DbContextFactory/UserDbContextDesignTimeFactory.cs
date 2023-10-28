@@ -19,7 +19,7 @@ namespace Delivery.EntityFramework.Core.DbContextFactory
         public OrderDbContext CreateDbContext(string[] args)
         {
             DbContextOptionsBuilder<OrderDbContext> builder = new DbContextOptionsBuilder<OrderDbContext>();
-            builder.UseSqlServer("Data Source=.;Initial Catalog=efCoreTest3;Integrated Security=True;Encrypt = Optional");
+            builder.UseSqlServer("Server=tcp:letsmove.database.windows.net,1433;Initial Catalog=LetsMoveTestDb;Persist Security Info=False;User ID=CloudSA5e76d665;Password=test_123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return new OrderDbContext(builder.Options);
         }
     }

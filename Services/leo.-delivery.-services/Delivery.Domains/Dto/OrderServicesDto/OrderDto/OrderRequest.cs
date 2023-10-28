@@ -61,42 +61,63 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         /// <summary>
         /// 物品名称
         /// </summary>
-        public string? order_GoodsName { get; set; }
+        public string order_ItemName { get; set; }
 
         /// <summary>
         /// 物品类型-字典配置
         /// </summary>
-        public string? order_GoodsType { get; set; }
+        public string order_ItemType { get; set; }
 
         /// <summary>
         /// 物品重量
         /// </summary>
-        public double? order_GoodsWeight { get; set; }
+        public double order_ItemWeight { get; set; }
 
         /// <summary>
         /// 物品件数
         /// </summary>
-        public int? order_GoddsNums { get; set; }
+        public int order_ItemQuantity { get; set; }
+
+        /// <summary>
+        /// 物品件数
+        /// </summary>
+        public int order_ItemVolume { get; set; }
+
+
+        /// <summary>
+        /// 物品件数
+        /// </summary>
+        public int order_ItemRemark { get; set; }
 
         /// <summary>
         /// 物品长度
         /// </summary>
-        public double? order_GoodsLong { get; set; }
+        public double order_ItemLong { get; set; }
 
         /// <summary>
         /// 物品宽度
         /// </summary>
-        public double? order_GoodsWidth { get; set; }
+        public double order_ItemWidth { get; set; }
 
         /// <summary>
         /// 物品高度
         /// </summary>
-        public string? order_GoodsHight { get; set; }
+        public string order_ItemHight { get; set; }
 
         /// <summary>
         /// 商品价格
         /// </summary>
-        public double? order_GoodsPrice { get; set; }
+        public double order_ItemPrice { get; set; }
+
+        /// <summary>
+        /// 开始时间
+        /// </summary>
+        public DateTime? begin_Time { get; set; }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime? end_Time { get; set; }
 
         #endregion
 
@@ -149,8 +170,34 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         /// <summary>
         /// 运送费
         /// </summary>
-        public double? order_GoodsDelivery { get; set; }
+        public double order_Fee { get; set; }
 
+        /// <summary>
+        /// 价格
+        /// </summary>
+        public double order_Charge { get; set; }
+
+        /// <summary>
+        /// 付款类型
+        /// </summary>
+        public string order_Methond { get; set; }
+
+        /// <summary>
+        /// 付款Reference,如果骑手代收是骑手Id
+        /// 如果在线支付将会是支付平台的Reference
+        /// 如果是用户扣账将会是用户Id
+        /// </summary>
+        public string? order_Reference { get; set; }
+
+        /// <summary>
+        /// 付款TransactionId
+        /// </summary>
+        public int order_TransactionId { get; set; }
+
+        /// <summary>
+        /// 是否已完成付款
+        /// </summary>
+        public bool order_IsReceived { get; set; }
         /// <summary>
         /// 付款类型-字典配置
         /// </summary>
@@ -178,6 +225,8 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
 
         #endregion
 
+        #region 创建信息
+
         /// <summary>
         /// 创建人
         /// </summary>
@@ -188,27 +237,15 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         /// </summary>
         public DateTime? create_Time { get; set; }
 
-        /// <summary>
-        /// 开始时间
-        /// </summary>
-        public DateTime? begin_Time { get; set; }
 
-        /// <summary>
-        /// 结束时间
-        /// </summary>
-        public DateTime? end_Time { get; set; }
+        #endregion
+
+        #region 订单跟踪信息
 
         /// <summary>
         /// 标签报告集合
         /// </summary>
         public List<Guid>? tagManager_IdList { get; set; }
-
-        #region 订单跟踪信息
-
-        ///// <summary>
-        ///// 订单Id
-        ///// </summary>
-        //public Guid order_Id { get; set; }
 
         /// <summary>
         /// 标签说明
@@ -226,5 +263,21 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         public string? tag_Type { get; set; }
 
         #endregion
+
+        /// <summary>
+        /// 是否上传图片 true:上传，false:移除
+        /// </summary>
+        public bool isUploadImg { get; set; }
+
+        /// <summary>
+        /// 订单图片
+        /// </summary>
+        public string? order_imgUrl { get; set; }
+
+        /// <summary>
+        /// 订单图片集合
+        /// </summary>
+        public List<string> order_ImgUrls { get; set; }
+
     }
 }

@@ -254,8 +254,8 @@ namespace Delivery.Services.OrderServices
                 if (orderTemp != null)
                     order.Id = orderTemp.Id;
 
-                order.order_CreateDeptId = UserInfoCookie.dept_Id ?? default;
-                order.order_CreateDeptName = UserInfoCookie.dept_Name ?? default;
+                //order.order_CreateDeptId = UserInfoCookie.dept_Id ?? default;
+                //order.order_CreateDeptName = UserInfoCookie.dept_Name ?? default;
 
                 if (orderRequest.Id.Guid_IsEmpty())
                     await _orderDbContext.AddAsync(order);
@@ -264,13 +264,6 @@ namespace Delivery.Services.OrderServices
                 // 处理文件
                 if (orderRequest.fileIdList?.Any() ?? false)
                 {
-                    //var fileList = await _systemFileServices.SystemFileListAsync(new Domains.Dto.SystemServicesDto.SystemFile.SystemFileRequest()
-                    //{
-                    //    idList = orderRequest.fileIdList
-                    //});
-                    //fileList.ForEach(file => file.data_Id = order.Id.ToString());
-                    //_orderDbContext.UpdateRange(fileList);
-
                     await _systemDbContext.SystemFiles
                         .Where(item => orderRequest.fileIdList.Contains(item.Id))
                         .ExecuteUpdateAsync(
@@ -293,14 +286,6 @@ namespace Delivery.Services.OrderServices
                                 )
                             .ExecuteDeleteAsync();
 
-                        //var fileDeleteList = await _systemFileServices.SystemFileListAsync(new Domains.Dto.SystemServicesDto.SystemFile.SystemFileRequest()
-                        //{
-                        //    data_Id = orderRequest.Id?.ToString()
-                        //});
-                        //var deleteFileList = fileDeleteList.Where(item => !orderRequest.fileIdList.Contains(item.Id)).ToList();
-
-                        //if (deleteFileList?.Any() ?? false)
-                        //    _orderDbContext.RemoveRange(deleteFileList);
                     }
                 }
 
@@ -427,22 +412,45 @@ namespace Delivery.Services.OrderServices
 
         #endregion
 
-        #region 旧
-
-        public async Task<bool> OrderAddAsync()
+        /// <summary>
+        /// 订单保存
+        /// </summary>
+        /// <param name="orderRequest"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<ResultMessage> OrderImgUrlSaveAsync(OrderRequest orderRequest = null)
         {
-            await _orderDbContext.Orders.AddAsync(new Order()
-            {
-                order_Name = "订单测试" + DateTime.Now,
-                create_Time = DateTime.Now,
-            });
+            var result = true;
 
-            return (await _orderDbContext.SaveChangesAsync()) > 0;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(orderRequest.order_imgUrl))
+                    return new ResultMessage(false, "The picture information cannot be empty!");
+
+                var orderItem = await _orderDbContext.Orders.FirstOrDefaultAsync(item => item.Id == orderRequest.Id);
+                if (orderItem is null)
+                    return new ResultMessage(false, "The order does not exist!");
+
+                if (orderRequest.isUploadImg)
+                    orderItem.order_ImgUrls.Add(orderRequest.order_imgUrl);
+                else
+                {
+                    if (orderItem.order_ImgUrls.Contains(orderRequest.order_imgUrl))
+                        orderItem.order_ImgUrls.Remove(orderRequest.order_imgUrl);
+                }
+
+                _orderDbContext.Update(orderItem);
+                result &= (await _orderDbContext.SaveChangesAsync()) > 0;
+
+                return new ResultMessage(result, result ? "Success！" : "Failed！");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"[订单图片保存]-异常：{ex.Message}");
+                return new ResultMessage(false, "Failed！");
+            }
         }
 
-
-
-        #endregion
 
     }
 }

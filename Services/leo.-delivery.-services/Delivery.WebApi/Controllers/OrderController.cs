@@ -42,9 +42,10 @@ namespace Delivery.WebApi.Controllers
         [HttpPost, Route("getOrderPageList")]
         public async Task<ResultMessage> GetOrderPageListAsync([FromBody] OrderRequest orderRequest)
         {
-            var orderList = await _orderServices.OrderFullPageListAsync(orderRequest);
+            return new ResultMessage(true);
+            //var orderList = await _orderServices.OrderFullPageListAsync(orderRequest);
 
-            return new ResultMessage(true, orderList);
+            //return new ResultMessage(true, orderList);
         }
         /// <summary>
         /// 保存订单
@@ -61,6 +62,18 @@ namespace Delivery.WebApi.Controllers
         /// <returns></returns>
         [HttpDelete, Route("deleteOrder")]
         public async Task<ResultMessage> DeleteTagAsync([FromQuery] OrderRequest orderRequest) => await _orderServices.OrderDeleteAsync(orderRequest);
+
+        /// <summary>
+        /// 订单图片保存
+        /// Param:
+        ///     isUploadImg:上传还是移除 true:上传，false:移除
+        ///     order_imgUrl:要增加或删除的图片img
+        /// </summary>
+        /// <param name="orderRequest"></param>
+        /// <returns></returns>
+        [HttpPost, Route("saveOrderImg")]
+        public async Task<ResultMessage> SaveOrderImg([FromBody] OrderRequest orderRequest) => await _orderServices.OrderImgUrlSaveAsync(orderRequest);
+       
 
         #endregion
 

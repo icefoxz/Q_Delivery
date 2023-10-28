@@ -14,20 +14,30 @@ namespace Delivery.EntityFramework.Core.EntityConfigs.OrderConfigs
             builder.Property(m => m.order_RiderPhone).IsRequired();
             builder.Property(m => m.order_ReceiverName).IsRequired();
             builder.Property(m => m.order_ReceiverPhone).IsRequired();
-            builder.Property(m => m.order_GoodsName).IsRequired();
-            builder.Property(m => m.order_GoodsType).IsRequired();
-            builder.Property(m => m.order_GoddsNums).IsRequired();
+            builder.Property(m => m.order_ItemName).IsRequired();
+            builder.Property(m => m.order_ItemType).IsRequired();
+            builder.Property(m => m.order_ItemQuantity).IsRequired();
             //builder.Property(m => m.order_BenginLat).IsRequired();
             //builder.Property(m => m.order_BenginLng).IsRequired();
             //builder.Property(m => m.order_EndLat).IsRequired();
             //builder.Property(m => m.order_EndLng).IsRequired();
-            builder.Property(m => m.order_GoodsPrice).IsRequired();
-            builder.Property(m => m.order_GoodsDelivery).IsRequired();
+            builder.Property(m => m.order_ItemPrice).IsRequired();
+            // 付款信息
+            builder.Property(m => m.order_Fee).IsRequired();
+            builder.Property(m => m.order_Fee).IsRequired();
+            builder.Property(m => m.order_Charge).IsRequired();
+            builder.Property(m => m.order_PayMethond).IsRequired();
+            builder.Property(m => m.order_TransactionId).IsRequired();
+            builder.Property(m => m.order_IsReceived).IsRequired(false);
+            builder.Property(m => m.order_Reference).IsRequired(false);
+            builder.Property(m => m.order_ImgUrls).HasConversion(
+                s => string.Join(',', s),// 源属性
+                s => s.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList() // 目标属性
+                ).IsRequired(false);
+
             builder.Property(m => m.order_PathDistance).IsRequired();
             builder.Property(m => m.order_PayIdentity).IsRequired();
             builder.Property(m => m.order_Status).IsRequired();
-            builder.Property(m => m.order_CreateDeptId).IsRequired();
-            builder.Property(m => m.order_CreateDeptName).IsRequired();
             builder.HasIndex(m => new { m.del_Status });//索引不要忘了加上IsDeleted，否则会影响性能
 
             //一个订单对应多个订单标签信息

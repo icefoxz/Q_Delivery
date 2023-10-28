@@ -10,10 +10,7 @@ using Delivery.Domains.UserEntitys;
 namespace Delivery.IServices.IOrderServices
 {
     public interface IOrderServices
-    {
-
-        Task<bool> OrderAddAsync();
-
+    { 
         /// <summary>
         /// 订单基础信息查询
         /// </summary>
@@ -55,6 +52,13 @@ namespace Delivery.IServices.IOrderServices
         /// <param name="orderRequest"></param>
         /// <returns></returns>
         Task<ResultMessage> OrderDeleteAsync(OrderRequest orderRequest = null);
+
+        /// <summary>
+        /// 订单文件保存
+        /// </summary>
+        /// <param name="orderRequest"></param>
+        /// <returns></returns>
+        Task<ResultMessage> OrderImgUrlSaveAsync(OrderRequest orderRequest = null);
 
         /// <summary>
         /// 获取订单报告信息

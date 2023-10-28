@@ -52,42 +52,52 @@ namespace Delivery.Domains.OrderEntitys
         /// <summary>
         /// 物品名称
         /// </summary>
-        public string order_GoodsName { get; set; }
+        public string order_ItemName { get; set; }
 
         /// <summary>
         /// 物品类型-字典配置
         /// </summary>
-        public string order_GoodsType { get; set; }
+        public string order_ItemType { get; set; }
 
         /// <summary>
         /// 物品重量
         /// </summary>
-        public double order_GoodsWeight { get; set; }
+        public double order_ItemWeight { get; set; }
 
         /// <summary>
-        /// 物品件数
+        /// 物品数量
         /// </summary>
-        public int order_GoddsNums { get; set; }
+        public int order_ItemQuantity { get; set; }
 
         /// <summary>
-        /// 物品长度
+        /// 物品体积 长×宽×高/6000
         /// </summary>
-        public double order_GoodsLong { get; set; }
+        public int order_ItemVolume { get; set; }
 
         /// <summary>
-        /// 物品宽度
+        /// 物品附加信息
         /// </summary>
-        public double order_GoodsWidth { get; set; }
+        public string order_ItemRemark { get; set; }
 
         /// <summary>
-        /// 物品高度
+        /// 物品长度-单位米
         /// </summary>
-        public string order_GoodsHight { get; set; }
+        public double order_ItemLong { get; set; }
 
         /// <summary>
-        /// 商品价格
+        /// 物品宽度-单位米
         /// </summary>
-        public double order_GoodsPrice { get; set; }
+        public double order_ItemWidth { get; set; }
+
+        /// <summary>
+        /// 物品高度-单位米
+        /// </summary>
+        public string order_ItemHight { get; set; }
+
+        /// <summary>
+        /// 物品价格，价值
+        /// </summary>
+        public double order_ItemPrice { get; set; }
 
         #endregion
 
@@ -109,6 +119,11 @@ namespace Delivery.Domains.OrderEntitys
         public string? order_BenginPlaceId { get; set; }
 
         /// <summary>
+        /// 结束地理Id
+        /// </summary>
+        public string? order_EndPlaceId { get; set; }
+
+        /// <summary>
         /// 结束经度
         /// </summary>
         public decimal? order_EndLng { get; set; }
@@ -119,9 +134,14 @@ namespace Delivery.Domains.OrderEntitys
         public decimal? order_EndLat { get; set; }
 
         /// <summary>
-        /// 结束地理Id
+        /// 开始地址
         /// </summary>
-        public string? order_EndPlaceId { get; set; }
+        public string? order_BeginAddress { get; set; }
+
+        /// <summary>
+        /// 结束地址
+        /// </summary>
+        public string? order_EndAddress { get; set; }
 
         /// <summary>
         /// 舟属Id
@@ -140,7 +160,36 @@ namespace Delivery.Domains.OrderEntitys
         /// <summary>
         /// 运送费
         /// </summary>
-        public double order_GoodsDelivery { get; set; }
+        public double order_Fee { get; set; }
+
+        /// <summary>
+        /// 价格
+        /// </summary>
+        public double order_Charge { get; set; }
+
+        /// <summary>
+        /// 付款类型PaymentMethods
+        /// </summary>
+        public string order_PayMethond { get; set; }
+
+        /// <summary>
+        /// 付款Reference,如果骑手代收是骑手Id
+        /// 如果在线支付将会是支付平台的Reference
+        /// 如果是用户扣账将会是用户Id
+        /// </summary>
+        public string? order_Reference { get; set; }
+
+        /// <summary>
+        /// 付款TransactionId
+        /// </summary>
+        public int order_TransactionId { get; set; }
+
+        /// <summary>
+        /// 是否已完成付款
+        /// </summary>
+        public bool? order_IsReceived { get; set; }
+
+        #endregion
 
         /// <summary>
         /// 付款类型-字典配置
@@ -158,16 +207,20 @@ namespace Delivery.Domains.OrderEntitys
         public string order_Status { get; set; }
 
         /// <summary>
-        /// 创建单位Id
+        /// 订单图片
         /// </summary>
-        public string? order_CreateDeptId { get; set; }
+        public List<string> order_ImgUrls { get; set; }
 
-        /// <summary>
-        /// 创建单位名称-防止后续改变单位名称
-        /// </summary>
-        public string? order_CreateDeptName { get; set; }
+        ///// <summary>
+        ///// 创建单位Id
+        ///// </summary>
+        //public string? order_CreateDeptId { get; set; }
 
-        #endregion
+        ///// <summary>
+        ///// 创建单位名称-防止后续改变单位名称
+        ///// </summary>
+        //public string? order_CreateDeptName { get; set; }
+
 
         /// <summary>
         /// 该订单有哪些标签
