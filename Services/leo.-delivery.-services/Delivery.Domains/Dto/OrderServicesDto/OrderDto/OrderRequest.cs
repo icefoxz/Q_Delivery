@@ -111,7 +111,7 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         /// <summary>
         /// 物品高度
         /// </summary>
-        public string order_ItemHight { get; set; }
+        public double order_ItemHight { get; set; }
 
         /// <summary>
         /// 商品价格

@@ -156,6 +156,9 @@ namespace Delivery.Services.OrderServices
             else if (orderRequest.IdList?.Any() ?? false)
                 pagListQuery = pagListQuery.Where(item => orderRequest.IdList.Contains(item.Id));
 
+            // 创建人查询
+            if (string.IsNullOrWhiteSpace(orderRequest?.create_User) == false)
+                pagListQuery = pagListQuery.Where(item => item.create_User == orderRequest.create_User);
             // 订单名称
             if (string.IsNullOrWhiteSpace(orderRequest?.order_Name) == false)
                 pagListQuery = pagListQuery.Where(item => item.order_Name.Contains(orderRequest.order_Name));

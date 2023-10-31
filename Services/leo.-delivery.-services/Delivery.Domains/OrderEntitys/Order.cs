@@ -92,7 +92,7 @@ namespace Delivery.Domains.OrderEntitys
         /// <summary>
         /// 物品高度-单位米
         /// </summary>
-        public string order_ItemHight { get; set; }
+        public double order_ItemHight { get; set; }
 
         /// <summary>
         /// 物品价格，价值
