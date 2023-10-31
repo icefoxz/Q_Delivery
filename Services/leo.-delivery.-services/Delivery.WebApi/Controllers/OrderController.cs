@@ -46,6 +46,7 @@ namespace Delivery.WebApi.Controllers
 
             return new ResultMessage(true, orderList);
         }
+
         /// <summary>
         /// 保存订单
         /// </summary>
@@ -72,8 +73,7 @@ namespace Delivery.WebApi.Controllers
         /// <returns></returns>
         [HttpPost, Route("saveOrderImg")]
         public async Task<ResultMessage> SaveOrderImg([FromBody] OrderRequest orderRequest) => await _orderServices.OrderImgUrlSaveAsync(orderRequest);
-       
-
+        
         #endregion
 
         #region 订单报告信息或打标签信息管理

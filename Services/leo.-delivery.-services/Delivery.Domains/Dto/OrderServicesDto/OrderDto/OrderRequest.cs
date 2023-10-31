@@ -79,15 +79,24 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         public int order_ItemQuantity { get; set; }
 
         /// <summary>
-        /// 物品件数
+        /// 物品体积 长×宽×高/6000
         /// </summary>
-        public int order_ItemVolume { get; set; }
-
+        public double order_ItemVolume { get; set; }
 
         /// <summary>
-        /// 物品件数
+        /// 物品简介或描述
         /// </summary>
-        public int order_ItemRemark { get; set; }
+        public string order_ItemRemark { get; set; }
+
+        /// <summary>
+        /// 开始地址
+        /// </summary>
+        public string? order_BeginAddress { get; set; }
+
+        /// <summary>
+        /// 结束地址
+        /// </summary>
+        public string? order_EndAddress { get; set; }
 
         /// <summary>
         /// 物品长度

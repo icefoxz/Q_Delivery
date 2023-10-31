@@ -72,7 +72,7 @@ namespace Delivery.Domains.OrderEntitys
         /// <summary>
         /// 物品体积 长×宽×高/6000
         /// </summary>
-        public int order_ItemVolume { get; set; }
+        public double order_ItemVolume { get; set; }
 
         /// <summary>
         /// 物品附加信息

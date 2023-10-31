@@ -99,8 +99,9 @@ namespace Delivery.Services.OrderServices
             else
                 resultData = objData.ToList();
 
-            pageData.CurrentPageData = resultData.Skip(orderRequest.current_PageIndex * orderRequest.page_Size)
-             .Take(orderRequest.page_Size).ToList();//在这里进行分页
+            pageData.CurrentPageData = resultData
+                .Skip(orderRequest.current_PageIndex * orderRequest.page_Size)
+                .Take(orderRequest.page_Size).ToList();//在这里进行分页
             pageData.totalPages = orderList.totalPages;
             pageData.total = orderList.total;
             pageData.page_Size = orderList.page_Size;
