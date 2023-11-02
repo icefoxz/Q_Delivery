@@ -10,6 +10,7 @@ namespace Delivery.EntityFramework.Core.EntityConfigs.OrderConfigs
             //因此我们取消主键的默认的聚集索引
             builder.HasKey(m => m.Id).IsClustered(false);//对于Guid主键，不要建聚集索引，否则插入性能很差 
             builder.Property(m => m.order_Name).IsRequired();
+            builder.Property(m => m.order_RiderId).IsRequired(false);
             builder.Property(m => m.order_RiderName).IsRequired();
             builder.Property(m => m.order_RiderPhone).IsRequired();
             builder.Property(m => m.order_ReceiverName).IsRequired();

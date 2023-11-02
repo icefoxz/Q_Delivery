@@ -16,6 +16,11 @@ namespace Delivery.Domains.OrderEntitys
         #region 收货配送信息
 
         /// <summary>
+        /// 配送人Id
+        /// </summary>
+        public string order_RiderId { get; set; }
+
+        /// <summary>
         /// 配送人
         /// </summary>
         public string order_RiderName { get; set; }

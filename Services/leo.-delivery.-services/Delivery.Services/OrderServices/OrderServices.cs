@@ -162,6 +162,9 @@ namespace Delivery.Services.OrderServices
             // 订单名称
             if (string.IsNullOrWhiteSpace(orderRequest?.order_Name) == false)
                 pagListQuery = pagListQuery.Where(item => item.order_Name.Contains(orderRequest.order_Name));
+            // 配送人Id
+            if (string.IsNullOrWhiteSpace(orderRequest?.order_RiderId) == false)
+                pagListQuery = pagListQuery.Where(item => item.order_RiderId.Contains(orderRequest.order_RiderId));
             // 配送人
             if (string.IsNullOrWhiteSpace(orderRequest?.order_RiderName) == false)
                 pagListQuery = pagListQuery.Where(item => item.order_RiderName.Contains(orderRequest.order_RiderName));
@@ -177,6 +180,9 @@ namespace Delivery.Services.OrderServices
             // 订单状态
             if (string.IsNullOrWhiteSpace(orderRequest?.order_Status) == false && orderRequest?.order_Status != "''")
                 pagListQuery = pagListQuery.Where(item => item.order_Status.Contains(orderRequest.order_Status));
+            // 舟属
+            if (string.IsNullOrWhiteSpace(orderRequest?.order_StateId) == false)
+                pagListQuery = pagListQuery.Where(item => item.order_StateId.Contains(orderRequest.order_StateId));
 
             if (orderRequest.begin_Time != null)
                 pagListQuery = pagListQuery.Where(item => item.create_Time > orderRequest.begin_Time);
