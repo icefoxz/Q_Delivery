@@ -269,7 +269,8 @@ export namespace Order {
     order_GoodsDelivery: string;
     order_PathDistance: number;
     order_PayIdentity: string;
-    order_Status: string;
+    order_StatusKey: string;
+    order_StatusValue: string;
   }
 
   // table
@@ -292,7 +293,8 @@ export namespace Order {
     order_GoodsDelivery: string;
     order_PathDistance: number;
     order_PayIdentity: string;
-    order_Status: string;
+    order_StatusKey: string;
+    order_StatusValue: string;
     create_Time: string;
     create_User: string;
   }

@@ -55,8 +55,8 @@
               </el-form-item>
             </div>
             <div>
-              <el-form-item label="订单状态" prop="order_Status">
-                <el-select v-model="queryParams.order_Status" placeholder="请选择订单状态" clearable>
+              <el-form-item label="订单状态" prop="order_StatusKey">
+                <el-select v-model="queryParams.order_StatusKey" placeholder="请选择订单状态" clearable>
                   <el-option v-for="item in OrderStatus" :label="item.dict_Name" :value="item.dict_Key" :key="item.dict_Key" />
                   <!-- <el-option v-for="item in orderStatusList" :key="item.value" :label="item.label" :value="item.value" /> -->
                 </el-select>
@@ -150,7 +150,7 @@
           <el-table-column prop="order_GoodsDelivery" label="运送费" width="150" />
           <el-table-column prop="order_PathDistance" label="配送距离" width="150" />
           <el-table-column prop="order_PayIdentity" label="付款标识" width="150" />
-          <el-table-column prop="order_Status" label="订单状态" width="150" />
+          <el-table-column prop="order_StatusKey" label="订单状态" width="150" />
           <el-table-column prop="create_Time" label="创建时间" width="150" />
           <el-table-column prop="create_User" label="创建人" width="150" />
           <el-table-column prop="operation" label="操作" width="150" />
@@ -233,7 +233,7 @@
         <el-descriptions-item label="付费类型">{{ rowCopy.order_PayType }}</el-descriptions-item>
         <el-descriptions-item label="付款标识">{{ rowCopy.order_PayIdentity }}</el-descriptions-item>
         <el-descriptions-item label="订单状态" :span="4">
-          {{ OrderStatus.find((f:any) => f.dict_Key == rowCopy.order_Status).dict_Name  }}
+          {{ OrderStatus.find((f:any) => f.dict_Key == rowCopy.order_StatusKey).dict_Name  }}
         </el-descriptions-item>
         <el-descriptions-item label="附件">
           <el-image
@@ -306,7 +306,7 @@ const tableData = ref<any>([]);
 // tableData.value = [{ order_Name: "订单" }];
 // 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）
 const proTable = ref<ProTableInstance>();
-const queryParams = ref<any>({ order_Status: "0" });
+const queryParams = ref<any>({ order_StatusKey: "0" });
 
 // 获取订单数据
 const getOrderList = async () => {

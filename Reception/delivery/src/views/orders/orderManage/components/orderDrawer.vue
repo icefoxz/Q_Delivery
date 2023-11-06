@@ -253,8 +253,8 @@
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="">
-          <el-form-item label="订单状态" prop="order_Status">
-            <el-select v-model="drawerProps.row!.order_Status" placeholder="请选择订单状态" clearable>
+          <el-form-item label="订单状态" prop="order_StatusKey">
+            <el-select v-model="drawerProps.row!.order_StatusKey" placeholder="请选择订单状态" clearable>
               <el-option v-for="item in OrderStatus" :label="item.dict_Name" :value="item.dict_Key" :key="item.dict_Key" />
               <!-- <el-option v-for="item in orderStatusList" :key="item.value" :label="item.label" :value="item.value" /> -->
             </el-select>
@@ -343,7 +343,7 @@ const rules = reactive({
   order_PathDistance: [{ required: true, message: "请填写配送距离" }],
   order_PayType: [{ required: true, message: "请选择付费类型" }],
   order_PayIdentity: [{ required: true, message: "请填写付款标识" }],
-  order_Status: [{ required: true, message: "请选择订单状态" }],
+  order_StatusKey: [{ required: true, message: "请选择订单状态" }],
   tagManager_Id: [{ required: true, message: "请选择" }],
   order_TagOrReport_Name: [{ required: true, message: "请填写订单报告说明" }]
 });
