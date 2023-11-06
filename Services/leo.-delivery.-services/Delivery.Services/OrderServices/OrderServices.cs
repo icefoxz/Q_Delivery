@@ -178,8 +178,8 @@ namespace Delivery.Services.OrderServices
             if (string.IsNullOrWhiteSpace(orderRequest?.order_ReceiverPhone) == false)
                 pagListQuery = pagListQuery.Where(item => item.order_ReceiverPhone.Contains(orderRequest.order_ReceiverPhone));
             // 订单状态
-            if (string.IsNullOrWhiteSpace(orderRequest?.order_Status) == false && orderRequest?.order_Status != "''")
-                pagListQuery = pagListQuery.Where(item => item.order_Status.Contains(orderRequest.order_Status));
+            if (string.IsNullOrWhiteSpace(orderRequest?.order_StatusKey) == false && orderRequest?.order_StatusKey != "''")
+                pagListQuery = pagListQuery.Where(item => item.order_StatusKey.Contains(orderRequest.order_StatusKey));
             // 舟属
             if (string.IsNullOrWhiteSpace(orderRequest?.order_StateId) == false)
                 pagListQuery = pagListQuery.Where(item => item.order_StateId.Contains(orderRequest.order_StateId));
@@ -236,8 +236,8 @@ namespace Delivery.Services.OrderServices
             if (string.IsNullOrWhiteSpace(orderRequest?.order_ReceiverPhone) == false)
                 orderQuery = orderQuery.Where(item => item.order_ReceiverPhone.Contains(orderRequest.order_ReceiverPhone));
             // 订单状态
-            if (string.IsNullOrWhiteSpace(orderRequest?.order_Status) == false && orderRequest?.order_Status != "''")
-                orderQuery = orderQuery.Where(item => item.order_Status.Contains(orderRequest.order_Status));
+            if (string.IsNullOrWhiteSpace(orderRequest?.order_StatusKey) == false && orderRequest?.order_StatusKey != "''")
+                orderQuery = orderQuery.Where(item => item.order_StatusKey.Contains(orderRequest.order_StatusKey));
 
             var orders = await orderQuery.OrderBy(item => item.create_Time).ToListAsync();
 

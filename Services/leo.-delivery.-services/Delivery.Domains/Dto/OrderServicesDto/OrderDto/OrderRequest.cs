@@ -223,9 +223,14 @@ namespace Delivery.Domains.Dto.OrderServicesDto.OrderDto
         public string? order_PayIdentity { get; set; }
 
         /// <summary>
-        /// 订单状态-字典配置
+        /// 订单状态Key-字典配置
         /// </summary>
-        public string? order_Status { get; set; }
+        public string? order_StatusKey { get; set; }
+
+        /// <summary>
+        /// 订单状态Value
+        /// </summary>
+        public string? order_StatusValue { get; set; }
 
         /// <summary>
         /// 创建单位Id

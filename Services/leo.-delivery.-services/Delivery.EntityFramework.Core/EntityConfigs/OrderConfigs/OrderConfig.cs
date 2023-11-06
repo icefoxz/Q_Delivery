@@ -38,7 +38,8 @@ namespace Delivery.EntityFramework.Core.EntityConfigs.OrderConfigs
 
             builder.Property(m => m.order_PathDistance).IsRequired();
             builder.Property(m => m.order_PayIdentity).IsRequired();
-            builder.Property(m => m.order_Status).IsRequired();
+            builder.Property(m => m.order_StatusKey).IsRequired();
+            builder.Property(m => m.order_StatusValue).IsRequired(false);
             builder.HasIndex(m => new { m.del_Status });//索引不要忘了加上IsDeleted，否则会影响性能
 
             //一个订单对应多个订单标签信息
