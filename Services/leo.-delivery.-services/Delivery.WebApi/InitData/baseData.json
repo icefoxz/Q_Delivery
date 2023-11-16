@@ -538,7 +538,7 @@
     // 用户信息
     "UserList": [
       {
-        "user_LoginName": "Admin",
+        "user_LoginName": "admin",
         "user_LoginPwd": "123456",
         "dept_Name": "Default Account",
         "person_Name": "Default Person",

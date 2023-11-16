@@ -48,11 +48,11 @@ namespace Delivery.WebApi.Controllers
                    .GetSection("isInitSeedData")
                    .Get<bool>();
                 var Rider = _configuration.GetSection("Rider").Get<Rider>();
-                if (_userDbContext?.Users.Any() ?? false)
-                {
-                    return new ResultMessage(false, "已存在数据，不允许进行初始化！");
-                }
-                else
+                //if (_userDbContext?.Users.Any() ?? false)
+                //{
+                //    return new ResultMessage(false, "已存在数据，不允许进行初始化！");
+                //}
+                //else
                 if (isInitData)
                 {
                     // 读取配置文件
@@ -194,14 +194,15 @@ namespace Delivery.WebApi.Controllers
                                         expand_Order = item.expand_Order,
                                         dict_Name = item.dict_Name,
                                         isSystemBuilt = item.isSystemBuilt,
-                                        dict_ParentKey = item.dict_ParentKey
+                                        dict_ParentKey = item.dict_ParentKey,
+                                        
                                     }).ToList();
 
                         dictList?.ForEach(item =>
                                 item.ParentId =
                                     dictList
-                                    .FirstOrDefault(item =>
-                                        item.dict_Key == item.dict_ParentKey)?.Id
+                                    .FirstOrDefault(dictItem =>
+                                        dictItem.dict_Key == item.dict_ParentKey)?.Id
                         );
 
                         if (deptList?.Any() ?? false)
