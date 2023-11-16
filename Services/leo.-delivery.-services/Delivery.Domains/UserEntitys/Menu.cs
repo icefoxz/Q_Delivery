@@ -1,6 +1,7 @@
 ﻿using Delivery.Commons.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,12 @@ namespace Delivery.Domains.UserEntitys
         /// 上级Id
         /// </summary>
         public Guid? menu_ParentId { get; set; }
+
+        /// <summary>
+        /// 上级名称
+        /// </summary>
+        [NotMapped]
+        public string? menu_ParentName { get; set; }
 
     }
 }

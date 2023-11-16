@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,5 +41,11 @@ namespace Delivery.Domains.SystemEntitys
         /// 是否是系统默认
         /// </summary>
         public bool? isSystemBuilt { get; set; }
+
+        /// <summary>
+        /// 上级Key
+        /// </summary>
+        [NotMapped]
+        public string dict_ParentKey { get; set; }
     }
 }

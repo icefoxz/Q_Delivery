@@ -8,5 +8,9 @@ namespace Delivery.Domains.Dto.SystemServicesDto.SystemDict
 {
     public class SystemDictResponse : SystemDictRequest
     {
+        /// <summary>
+        /// 上级Key
+        /// </summary>
+        public string dict_ParentKey { get; set; }
     }
 }
